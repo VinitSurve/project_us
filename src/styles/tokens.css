@@ -1,0 +1,74 @@
+/* PROJECT: US — DESIGN SYSTEM TOKENS */
+:root {
+  /* Warm editorial & paper-like neutrals */
+  --bg-primary: #120e17;
+  --bg-surface: #1d1726;
+  --bg-surface-elevated: #281f34;
+  --bg-card: rgba(35, 27, 47, 0.85);
+  --bg-card-border: rgba(220, 185, 255, 0.15);
+  --bg-card-hover: rgba(50, 38, 68, 0.95);
+  
+  /* Paper / Light accents for documents and Polaroid scrapbooks */
+  --paper-cream: #FAF7F0;
+  --paper-warm: #FFFDF9;
+  --paper-text: #231C18;
+  --paper-subtext: #5A5047;
+  --paper-border: #E8E0D2;
+  --paper-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  /* Brand / Thematic Palette */
+  --pastel-pink: #FFB7C5;
+  --pastel-pink-soft: rgba(255, 183, 197, 0.18);
+  --pastel-lavender: #E0C3FC;
+  --pastel-lavender-deep: #B388FF;
+  --pastel-peach: #FFD3B6;
+  --pastel-mint: #C1F0DC;
+  
+  /* Electric Brainrot Accents */
+  --neon-cyan: #00F0FF;
+  --neon-yellow: #FFE600;
+  --neon-magenta: #FF2A85;
+  --viral-orange: #FF5E36;
+  
+  /* Text colors on dark base */
+  --text-main: #FDFBFF;
+  --text-muted: #BDB0C9;
+  --text-dim: #847693;
+  --text-highlight: #FFE27D;
+  
+  /* Functional colors */
+  --success: #38E09A;
+  --warning: #FFA834;
+  --danger: #FF4757;
+  --info: #48CAE4;
+
+  /* Typography */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-handwriting: 'Caveat', cursive;
+  --font-marathi: 'Rozha One', 'Noto Sans Devanagari', serif;
+
+  /* Motion & Easings */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 9999px;
+  
+  /* Elevation Shadows */
+  --shadow-glow-pink: 0 0 25px rgba(255, 183, 197, 0.3);
+  --shadow-glow-cyan: 0 0 25px rgba(0, 240, 255, 0.25);
+  --shadow-glow-lavender: 0 0 30px rgba(179, 136, 255, 0.25);
+  --shadow-card: 0 12px 36px rgba(0, 0, 0, 0.45);
+
+  /* Safe Area / Mobile Viewport */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
