@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
-import { Sparkles, ArrowRight, Heart } from 'lucide-react';
+import { Heart, ArrowRight } from 'lucide-react';
 
 export const TheProposalScene: React.FC = () => {
   const { nextScene } = usePresentation();
@@ -14,118 +14,82 @@ export const TheProposalScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '28px',
-        padding: '20px 10px',
+        gap: '24px',
+        padding: '10px 0',
       }}
     >
-      {/* Subtle glowing halo icon */}
+      {/* Pulsing Glowing Heart */}
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        animate={{ scale: [1, 1.12, 1] }}
+        transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
         style={{
-          width: '72px',
-          height: '72px',
+          width: '76px',
+          height: '76px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255, 183, 197, 0.3) 0%, rgba(224, 195, 252, 0.1) 70%)',
-          border: '1px solid rgba(255, 183, 197, 0.4)',
+          background: 'radial-gradient(circle, rgba(255, 183, 197, 0.35) 0%, rgba(224, 195, 252, 0.1) 70%)',
+          border: '2px solid rgba(255, 183, 197, 0.5)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#FFB7C5',
-          boxShadow: '0 0 35px rgba(255, 183, 197, 0.25)',
+          boxShadow: '0 0 40px rgba(255, 183, 197, 0.3)',
         }}
       >
-        <Heart size={32} fill="#FFB7C5" />
+        <Heart size={36} fill="#FFB7C5" />
       </motion.div>
 
       {/* The Central Question */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        style={{
-          maxWidth: '560px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.8rem',
-            color: '#BDB0C9',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-          }}
-        >
-          THE ACTUAL QUESTION
-        </span>
-
+      <div style={{ maxWidth: '440px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
         <h1
           style={{
-            fontSize: 'clamp(1.6rem, 5.5vw, 2.3rem)',
+            fontSize: 'clamp(1.5rem, 5.5vw, 2.2rem)',
             fontWeight: 800,
             lineHeight: 1.35,
             letterSpacing: '-0.02em',
             color: '#FDFBFF',
           }}
         >
-          Jokes aside, I genuinely like you, and I&apos;d like to explore whether there&apos;s something more between us.
+          Jokes aside, I genuinely like you.
         </h1>
 
         <p
           style={{
-            fontSize: 'clamp(1.1rem, 3.8vw, 1.4rem)',
+            fontSize: 'clamp(1.1rem, 4vw, 1.35rem)',
             color: '#FFB7C5',
-            fontWeight: 600,
+            fontWeight: 700,
             lineHeight: 1.45,
           }}
         >
           Would you be open to going on a proper date with me and seeing where it goes?
         </p>
-      </motion.div>
+      </div>
 
-      {/* Reassurance note */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        style={{
-          fontSize: '0.84rem',
-          color: '#847693',
-          maxWidth: '420px',
-          lineHeight: 1.5,
-        }}
-      >
-        Take all the time you need. Your comfort and feelings always come first.
-      </motion.p>
+      <p style={{ fontSize: '0.84rem', color: '#847693', maxWidth: '340px', lineHeight: 1.5 }}>
+        No pressure at all. Take all the time you need.
+      </p>
 
       {/* Button to response ballot */}
       <motion.button
-        initial={{ y: 15, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.96 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={nextScene}
         style={{
+          marginTop: '6px',
           padding: '16px 36px',
           borderRadius: '999px',
           background: 'linear-gradient(135deg, #FFB7C5, #E0C3FC)',
           border: 'none',
           color: '#1E1624',
           fontWeight: 800,
-          fontSize: '1rem',
-          display: 'flex',
+          fontSize: '0.96rem',
+          display: 'inline-flex',
           alignItems: 'center',
-          gap: '10px',
+          gap: '8px',
           cursor: 'pointer',
-          boxShadow: '0 8px 30px rgba(255, 183, 197, 0.45)',
+          boxShadow: '0 8px 30px rgba(255, 183, 197, 0.4)',
         }}
       >
-        <span>Open The Boardroom Ballot</span>
+        <span>Your Response</span>
         <ArrowRight size={18} />
       </motion.button>
     </div>

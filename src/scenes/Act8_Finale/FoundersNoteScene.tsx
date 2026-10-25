@@ -1,111 +1,73 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
-import { Heart, ArrowRight, Feather } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 export const FoundersNoteScene: React.FC = () => {
-  const { nextScene } = usePresentation();
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* Header */}
-      <div>
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            color: '#FFB7C5',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            marginBottom: '4px',
-          }}
-        >
-          <Feather size={14} /> ACT VIII // PERSONAL DISCLOSURE
-        </div>
-        <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.1rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          Founder&apos;s Note
-        </h2>
-      </div>
-
-      {/* Intimate Parchment Letter Card */}
-      <div
-        className="paper-sheet"
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        gap: '24px',
+        padding: '10px 0',
+      }}
+    >
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         style={{
-          padding: '26px 22px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '14px',
+          width: '100%',
+          maxWidth: '400px',
           background: '#FFFDF9',
           color: '#231C18',
-          borderRadius: '18px',
-          maxHeight: '400px',
-          overflowY: 'auto',
+          borderRadius: '24px',
+          padding: '32px 26px',
+          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
           border: '1px solid #E8E0D2',
+          textAlign: 'left',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#D81B60', fontWeight: 700, fontSize: '0.88rem' }}>
-          <Heart size={16} fill="#D81B60" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#D81B60', fontWeight: 800, fontSize: '1rem' }}>
+          <Heart size={18} fill="#D81B60" />
           <span>Dear बाळ,</span>
         </div>
 
-        <p style={{ fontSize: '0.92rem', lineHeight: 1.65, color: '#3A3027' }}>
-          Behind all the cat memes, the mock legal contracts, the Kundali statistics, and the overengineered code, there is a very simple and vulnerable human truth.
+        <p style={{ fontSize: '0.98rem', lineHeight: 1.6, color: '#3A3027' }}>
+          Behind all the cat memes, the jokes, and the overengineered code, the truth is very simple:
         </p>
 
-        <p style={{ fontSize: '0.92rem', lineHeight: 1.65, color: '#3A3027' }}>
-          Ever since Hacknova, our conversations have been one of my favorite parts of life. Whether we are discussing big dreams, talking about code, sitting on late-night scooter rides, or laughing at ridiculous internet lore, being around you feels natural and peaceful.
+        <p style={{ fontSize: '1.08rem', lineHeight: 1.5, color: '#D81B60', fontWeight: 700 }}>
+          I genuinely really like you.
         </p>
 
-        <p style={{ fontSize: '0.92rem', lineHeight: 1.65, color: '#3A3027' }}>
-          I admire your sharpness, your independence, your kindness, and the genuine way you move through the world. I didn’t build this to pressure you or put you on the spot—I built it because you deserve something thoughtful, intentional, and made just for you.
+        <p style={{ fontSize: '0.94rem', lineHeight: 1.6, color: '#3A3027' }}>
+          Our conversations are my favorite part of any day. You make everything effortless, funny, and bright.
         </p>
 
-        <p style={{ fontSize: '0.92rem', lineHeight: 1.65, color: '#3A3027' }}>
-          Whatever your response is, I am grateful for you in my life. But if there’s a possibility that you feel something too, I’d love to find out together.
+        <p style={{ fontSize: '0.94rem', lineHeight: 1.6, color: '#3A3027' }}>
+          Whatever you choose, you will always have someone in your corner who respects you and cherishes your presence.
         </p>
 
-        <div style={{ marginTop: '10px', paddingTop: '10px', borderTop: '1px dashed #E0C3FC' }}>
+        <div style={{ marginTop: '8px', paddingTop: '12px', borderTop: '1px dashed #E0C3FC' }}>
           <div
             className="font-handwriting"
             style={{
-              fontSize: '1.4rem',
+              fontSize: '1.45rem',
               color: '#D81B60',
               fontWeight: 700,
             }}
           >
-            — With all my fondness &amp; respect.
+            — With all my fondness. ✨
           </div>
         </div>
-      </div>
-
-      {/* Button */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={nextScene}
-        style={{
-          width: '100%',
-          padding: '16px',
-          borderRadius: '16px',
-          background: 'linear-gradient(135deg, #FFB7C5, #E0C3FC)',
-          border: 'none',
-          color: '#1E1624',
-          fontWeight: 800,
-          fontSize: '0.96rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(255, 183, 197, 0.35)',
-        }}
-      >
-        <span>Turn to The Central Question</span>
-        <ArrowRight size={18} />
-      </motion.button>
+      </motion.div>
     </div>
   );
 };

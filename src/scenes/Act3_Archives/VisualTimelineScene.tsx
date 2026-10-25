@@ -1,154 +1,113 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
 import { TIMELINE_EVENTS } from '../../content/proposalData';
 import { soundManager } from '../../utils/sound';
-import { Calendar, ArrowRight, Sparkles, Check } from 'lucide-react';
 
 export const VisualTimelineScene: React.FC = () => {
-  const { nextScene } = usePresentation();
-  const [selectedEventId, setSelectedEventId] = useState<string>(TIMELINE_EVENTS[0].id);
+  const [selectedId, setSelectedId] = useState(TIMELINE_EVENTS[0].id);
+
+  const selected = TIMELINE_EVENTS.find((e) => e.id === selectedId) || TIMELINE_EVENTS[0];
 
   const handleSelect = (id: string) => {
     soundManager.playClick();
-    setSelectedEventId(id);
+    setSelectedId(id);
   };
 
-  const selectedEvent = TIMELINE_EVENTS.find((e) => e.id === selectedEventId) || TIMELINE_EVENTS[0];
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-      {/* Header */}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        gap: '20px',
+        padding: '10px 0',
+      }}
+    >
       <div>
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            color: '#FFD3B6',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            marginBottom: '4px',
-          }}
-        >
-          <Calendar size={14} /> SECTION 2.0 // CHRONOLOGICAL LOG
-        </div>
-        <h2 style={{ fontSize: 'clamp(1.4rem, 5vw, 2rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          The Shared Lore Timeline
+        <h2 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          The Shared Lore Road
         </h2>
+        <p style={{ color: '#FFD3B6', fontSize: '0.86rem', marginTop: '4px' }}>
+          Tap the milestones along our journey:
+        </p>
       </div>
 
-      {/* Horizontal Milestone Selector on Mobile/Desktop */}
+      {/* Horizontal Milestone Road */}
       <div
         style={{
           display: 'flex',
           gap: '8px',
           overflowX: 'auto',
-          paddingBottom: '4px',
+          maxWidth: '100%',
+          padding: '6px 4px',
           WebkitOverflowScrolling: 'touch',
         }}
       >
-        {TIMELINE_EVENTS.map((event, idx) => {
-          const isSelected = event.id === selectedEventId;
+        {TIMELINE_EVENTS.map((event) => {
+          const isSelected = event.id === selectedId;
           return (
-            <button
+            <motion.button
               key={event.id}
+              whileTap={{ scale: 0.94 }}
               onClick={() => handleSelect(event.id)}
               style={{
                 flexShrink: 0,
-                padding: '8px 14px',
-                borderRadius: '12px',
+                padding: '10px 14px',
+                borderRadius: '14px',
                 background: isSelected ? 'rgba(255, 211, 182, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-                border: isSelected ? '1px solid #FFD3B6' : '1px solid rgba(255, 255, 255, 0.06)',
+                border: isSelected ? '2px solid #FFD3B6' : '1px solid rgba(255, 255, 255, 0.08)',
                 color: isSelected ? '#FFD3B6' : '#847693',
-                fontSize: '0.78rem',
+                fontSize: '0.82rem',
                 fontWeight: 700,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
                 cursor: 'pointer',
-                transition: 'all 0.15s ease',
               }}
             >
               <span>{event.icon}</span>
               <span>{event.tag}</span>
-            </button>
+            </motion.button>
           );
         })}
       </div>
 
-      {/* Detail Card for the selected milestone */}
-      <motion.div
-        key={selectedEvent.id}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className="glass-panel"
-        style={{
-          padding: '24px 20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '14px',
-          border: '1px solid rgba(255, 211, 182, 0.3)',
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span
-            style={{
-              background: 'rgba(255, 211, 182, 0.15)',
-              color: '#FFD3B6',
-              padding: '4px 10px',
-              borderRadius: '999px',
-              fontSize: '0.72rem',
-              fontWeight: 700,
-            }}
-          >
-            {selectedEvent.badge}
-          </span>
-          <span style={{ fontSize: '0.75rem', color: '#847693', fontFamily: 'var(--font-mono)' }}>
-            {selectedEvent.date}
-          </span>
-        </div>
+      {/* Detail Punch Card */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selected.id}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          style={{
+            width: '100%',
+            maxWidth: '380px',
+            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(255, 211, 182, 0.3)',
+            borderRadius: '20px',
+            padding: '20px',
+            textAlign: 'left',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <span style={{ fontSize: '1.4rem' }}>{selected.icon}</span>
+            <span style={{ fontSize: '0.72rem', color: '#FFD3B6', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
+              {selected.date}
+            </span>
+          </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ fontSize: '1.8rem' }}>{selectedEvent.icon}</span>
-          <h3 style={{ fontSize: '1.25rem', color: '#FDFBFF', fontWeight: 800 }}>
-            {selectedEvent.title}
+          <h3 style={{ fontSize: '1.1rem', color: '#FDFBFF', fontWeight: 800, marginBottom: '6px' }}>
+            {selected.title}
           </h3>
-        </div>
 
-        <p style={{ color: '#E8D7FF', fontSize: '0.92rem', lineHeight: 1.6 }}>
-          {selectedEvent.description}
-        </p>
-      </motion.div>
-
-      {/* Button */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={nextScene}
-        style={{
-          width: '100%',
-          padding: '16px',
-          borderRadius: '16px',
-          background: 'linear-gradient(135deg, #FFD3B6, #FFB7C5)',
-          border: 'none',
-          color: '#1E1624',
-          fontWeight: 800,
-          fontSize: '0.96rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(255, 211, 182, 0.35)',
-        }}
-      >
-        <span>Enter The Photo Museum</span>
-        <ArrowRight size={18} />
-      </motion.button>
+          <p style={{ color: '#D8CCE6', fontSize: '0.86rem', lineHeight: 1.5 }}>
+            {selected.description}
+          </p>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };

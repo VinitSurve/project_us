@@ -1,120 +1,53 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
-import { ShieldAlert, ArrowRight, HeartHandshake, CheckCircle2, MessageSquare } from 'lucide-react';
+import { ShieldAlert, HeartHandshake } from 'lucide-react';
 
 export const RedTeamReviewScene: React.FC = () => {
-  const { nextScene } = usePresentation();
-
-  const REALITY_CHECKS = [
-    {
-      title: 'Correlation != Romantic Destiny',
-      desc: 'Having matching Kundali points and liking the same cat reels is fun lore, but real relationships are built through daily kindness, consistency, and active effort.',
-    },
-    {
-      title: 'Mutual Consent & Enthusiasm Required',
-      desc: 'No amount of well-designed slides or witty arguments matters unless you genuinely feel the spark too. Your genuine feelings are the only metric that counts.',
-    },
-    {
-      title: 'Still Lots to Discover',
-      desc: 'We know each other well as friends, but dating is a different adventure. There will be new habits, quirks, and stories to uncover.',
-    },
-    {
-      title: 'Communication > Memes',
-      desc: 'Memes are great for breaking the ice, but navigating real life together requires honest vulnerability and listening without getting defensive.',
-    },
-  ];
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-      {/* Header */}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        gap: '24px',
+        padding: '10px 0',
+      }}
+    >
       <div>
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            color: '#FFA834',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            marginBottom: '4px',
-          }}
-        >
-          <ShieldAlert size={14} /> INTERNAL AUDIT // RED-TEAM REALITY CHECK
-        </div>
-        <h2 style={{ fontSize: 'clamp(1.4rem, 5vw, 2rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          The Red-Team Review
+        <h2 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          The Reality Check
         </h2>
-      </div>
-
-      {/* Main Glass Panel */}
-      <div
-        className="glass-panel"
-        style={{
-          padding: '22px 20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '14px',
-          maxHeight: '380px',
-          overflowY: 'auto',
-        }}
-      >
-        <p style={{ color: '#D8CCE6', fontSize: '0.86rem', lineHeight: 1.5 }}>
-          Before we get carried away by our own jokes, the corporate compliance board insists on a healthy dose of grounded self-awareness:
+        <p style={{ color: '#FFA834', fontSize: '0.86rem', marginTop: '4px', fontWeight: 600 }}>
+          Grounded self-awareness before proceeding:
         </p>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {REALITY_CHECKS.map((item, idx) => (
-            <div
-              key={idx}
-              style={{
-                padding: '12px 14px',
-                background: 'rgba(255, 255, 255, 0.03)',
-                borderRadius: '12px',
-                border: '1px solid rgba(255, 168, 52, 0.25)',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                <CheckCircle2 size={16} color="#FFA834" />
-                <h4 style={{ color: '#FDFBFF', fontSize: '0.88rem', fontWeight: 700 }}>
-                  {item.title}
-                </h4>
-              </div>
-              <p style={{ color: '#BDB0C9', fontSize: '0.8rem', lineHeight: 1.45, paddingLeft: '24px' }}>
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* Button */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={nextScene}
+      <motion.div
+        initial={{ y: 15, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
         style={{
           width: '100%',
-          padding: '16px',
-          borderRadius: '16px',
-          background: 'linear-gradient(135deg, #FFA834, #FFB7C5)',
-          border: 'none',
-          color: '#1E1624',
-          fontWeight: 800,
-          fontSize: '0.96rem',
+          maxWidth: '380px',
+          background: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(255, 168, 52, 0.3)',
+          borderRadius: '24px',
+          padding: '28px 22px',
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(255, 168, 52, 0.35)',
+          flexDirection: 'column',
+          gap: '16px',
+          boxShadow: '0 12px 30px rgba(0,0,0,0.4)',
         }}
       >
-        <span>Meet The Candidates</span>
-        <ArrowRight size={18} />
-      </motion.button>
+        <p style={{ fontSize: '0.96rem', color: '#FDFBFF', lineHeight: 1.6, fontWeight: 500 }}>
+          Astrology scores, compatibility algorithms, and internet cat memes are fun...
+        </p>
+        <p style={{ fontSize: '1.05rem', color: '#FFA834', lineHeight: 1.5, fontWeight: 700 }}>
+          ...but real human connection is built on honesty, mutual respect, and two people simply choosing each other.
+        </p>
+      </motion.div>
     </div>
   );
 };

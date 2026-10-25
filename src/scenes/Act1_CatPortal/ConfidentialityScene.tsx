@@ -2,175 +2,124 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
 import { soundManager } from '../../utils/sound';
-import { ScrollText, CheckSquare, Square, ArrowRight, Stamp } from 'lucide-react';
+import { Stamp, Check, Sparkles } from 'lucide-react';
 
 export const ConfidentialityScene: React.FC = () => {
-  const { nextScene, unlockEasterEgg } = usePresentation();
-  const [agreed, setAgreed] = useState(false);
+  const { unlockEasterEgg, nextScene } = usePresentation();
+  const [checks, setChecks] = useState<Record<number, boolean>>({ 0: false, 1: false, 2: false });
   const [signed, setSigned] = useState(false);
+
+  const toggleCheck = (idx: number) => {
+    soundManager.playClick();
+    setChecks((prev) => ({ ...prev, [idx]: !prev[idx] }));
+  };
 
   const handleSign = () => {
     soundManager.playBell();
-    setAgreed(true);
     setSigned(true);
+    setChecks({ 0: true, 1: true, 2: true });
     unlockEasterEgg('nda-speedrunner');
   };
 
+  const TERMS = [
+    { emoji: '🐱', text: 'I accept an unreasonable amount of cat memes.' },
+    { emoji: '🧠', text: 'I forgive the developer for chronic overthinking.' },
+    { emoji: '💛', text: 'My freedom to say no is 100% respected.' },
+  ];
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* Header */}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        gap: '20px',
+        padding: '10px 0',
+      }}
+    >
       <div>
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            color: '#FFB7C5',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            marginBottom: '4px',
-          }}
-        >
-          <ScrollText size={14} /> LEGAL DISCLOSURE (HIGHLY UNNECESSARY)
-        </div>
-        <h2 style={{ fontSize: 'clamp(1.4rem, 5vw, 1.9rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          Non-Disclosure & Feline Agreement
+        <h2 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          The Feline NDA
         </h2>
+        <p style={{ color: '#E0C3FC', fontSize: '0.86rem', marginTop: '4px' }}>
+          By proceeding, you playfully acknowledge:
+        </p>
       </div>
 
-      {/* Contract Parchment */}
-      <div
-        className="paper-sheet"
-        style={{
-          padding: '22px 20px',
-          maxHeight: '340px',
-          overflowY: 'auto',
-          fontSize: '0.86rem',
-          lineHeight: 1.6,
-          position: 'relative',
-        }}
-      >
-        <div style={{ textAlign: 'center', borderBottom: '1px solid #E8E0D2', paddingBottom: '10px', marginBottom: '14px' }}>
-          <strong style={{ fontSize: '0.92rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-            FELINE NON-DISCLOSURE AGREEMENT (NDA-PURR-2026)
-          </strong>
-        </div>
-
-        <p style={{ marginBottom: '12px' }}>
-          <strong>WHEREAS:</strong> The Party of the First Part (The Proposer / Software Engineer) harbors sincere feelings and an ungodly amount of overthinking; and
-        </p>
-
-        <p style={{ marginBottom: '12px' }}>
-          <strong>WHEREAS:</strong> The Party of the Second Part (बाळ) is uniquely wonderful, possesses impeccable taste in crochet cat clips, and possesses the sole authority to accept or deny this invitation;
-        </p>
-
-        <p style={{ marginBottom: '12px' }}>
-          <strong>NOW THEREFORE:</strong> By proceeding past this barrier, you formally acknowledge and stipulate:
-        </p>
-
-        <ul style={{ paddingLeft: '20px', marginBottom: '14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <li>
-            <strong>Clause 1.1 (Excessive Cats):</strong> The presence of an unreasonable quantity of cat memes, gifs, and feline commentary cannot be held against the creator in court.
-          </li>
-          <li>
-            <strong>Clause 1.2 (Overengineering):</strong> The creator acknowledges that a normal person would have simply sent a WhatsApp message asking: &ldquo;Hey, want to grab coffee?&rdquo; instead of building an entire interactive web application.
-          </li>
-          <li>
-            <strong>Clause 1.3 (Zero Coercion):</strong> Your comfort, boundaries, and freedom of choice are sacred. You are under absolutely zero obligation to say yes, feel awkward, or change your friendship.
-          </li>
-          <li>
-            <strong>Clause 1.4 (Tea Compensation):</strong> In the event of catastrophic embarrassment, the creator agrees to buy cutting chai and listen quietly without further yapping.
-          </li>
-        </ul>
-
-        {/* Digital Signature Stamp */}
-        {signed && (
-          <motion.div
-            initial={{ scale: 2, opacity: 0, rotate: -20 }}
-            animate={{ scale: 1, opacity: 1, rotate: -8 }}
-            transition={{ type: 'spring', damping: 15 }}
-            style={{
-              marginTop: '10px',
-              padding: '8px 14px',
-              border: '2px solid #FF2A85',
-              borderRadius: '8px',
-              color: '#FF2A85',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontWeight: 800,
-              fontSize: '0.8rem',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              background: 'rgba(255, 42, 133, 0.08)',
-            }}
-          >
-            <Stamp size={16} /> SIGNED BY PAW PRINT OF बाळ
-          </motion.div>
-        )}
+      {/* 3 Interactive Tactile Clauses */}
+      <div style={{ width: '100%', maxWidth: '420px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {TERMS.map((term, i) => {
+          const checked = checks[i];
+          return (
+            <motion.div
+              key={i}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => toggleCheck(i)}
+              style={{
+                padding: '14px 16px',
+                background: checked ? 'rgba(56, 224, 154, 0.12)' : 'rgba(255, 255, 255, 0.04)',
+                border: checked ? '1px solid #38E09A' : '1px solid rgba(224, 195, 252, 0.2)',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <div
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  background: checked ? '#38E09A' : 'rgba(255,255,255,0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: checked ? '#120E17' : '#847693',
+                  fontSize: '1.1rem',
+                  flexShrink: 0,
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {checked ? <Check size={18} strokeWidth={3} /> : term.emoji}
+              </div>
+              <span style={{ fontSize: '0.88rem', color: checked ? '#FDFBFF' : '#BDB0C9', fontWeight: 500 }}>
+                {term.text}
+              </span>
+            </motion.div>
+          );
+        })}
       </div>
 
-      {/* Signature Interaction */}
-      <div
+      {/* Big Tactile Paw Stamp */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.92 }}
         onClick={handleSign}
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          background: 'rgba(255, 255, 255, 0.04)',
-          border: '1px solid rgba(224, 195, 252, 0.2)',
-          borderRadius: '14px',
-          padding: '12px 16px',
-          cursor: 'pointer',
-        }}
-      >
-        <button
-          style={{
-            background: 'none',
-            border: 'none',
-            color: agreed ? '#38E09A' : '#847693',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-          }}
-        >
-          {agreed ? <CheckSquare size={22} color="#38E09A" /> : <Square size={22} />}
-        </button>
-        <span style={{ fontSize: '0.86rem', color: agreed ? '#FDFBFF' : '#BDB0C9' }}>
-          I hereby accept the Terms of Purr-posal and consent to receiving romantic slides.
-        </span>
-      </div>
-
-      {/* Proceed */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={nextScene}
-        disabled={!agreed}
-        style={{
-          width: '100%',
-          padding: '16px',
-          borderRadius: '16px',
-          background: agreed
-            ? 'linear-gradient(135deg, #FFB7C5, #E0C3FC)'
-            : 'rgba(255, 255, 255, 0.05)',
-          border: 'none',
-          color: agreed ? '#1E1624' : '#5A4F68',
+          marginTop: '6px',
+          padding: '16px 32px',
+          borderRadius: '999px',
+          background: signed
+            ? 'rgba(56, 224, 154, 0.2)'
+            : 'linear-gradient(135deg, #FF4757, #FF2A85)',
+          border: signed ? '2px solid #38E09A' : 'none',
+          color: '#FFF',
           fontWeight: 800,
           fontSize: '0.96rem',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          cursor: agreed ? 'pointer' : 'default',
-          boxShadow: agreed ? '0 8px 25px rgba(255, 183, 197, 0.35)' : 'none',
+          gap: '8px',
+          cursor: 'pointer',
+          boxShadow: signed ? 'none' : '0 8px 25px rgba(255, 71, 87, 0.4)',
         }}
       >
-        <span>Proceed to Executive Summary</span>
-        <ArrowRight size={18} />
+        <Stamp size={18} />
+        <span>{signed ? '🐾 Stamped by बाळ' : 'Paw Print to Sign'}</span>
       </motion.button>
     </div>
   );

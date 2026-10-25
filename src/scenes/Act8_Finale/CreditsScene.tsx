@@ -13,71 +13,69 @@ export const CreditsScene: React.FC = () => {
     { role: 'HEAD OF QUESTIONABLE ASTROLOGY', name: 'Dr. Meowstein, Ph.D. in 34/36 Gunas' },
     { role: 'OFFICIAL FUEL SPONSOR', name: 'Late-Night Cutting Chai & Roadside Dhabas' },
     { role: 'AUDIO SYNTHESIS DEPARTMENT', name: 'Pure Web Audio API (Zero Broken MP3s)' },
-    { role: 'LINES OF OVERENGINEERED CODE', name: '3,842 lines crafted with love' },
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', alignItems: 'center', textAlign: 'center' }}>
       {/* Header */}
       <div>
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
+            fontSize: '0.72rem',
             color: '#E0C3FC',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
             marginBottom: '4px',
           }}
         >
-          <Film size={14} /> PRODUCTION CREDITS // THE ROSTER
+          <Film size={13} /> PRODUCTION CREDITS // THE ROSTER
         </div>
-        <h2 style={{ fontSize: 'clamp(1.4rem, 5vw, 2rem)', fontWeight: 800, color: '#FDFBFF' }}>
+        <h2 style={{ fontSize: 'clamp(1.3rem, 4.5vw, 1.85rem)', fontWeight: 800, color: '#FDFBFF' }}>
           Executive Credits
         </h2>
       </div>
 
-      {/* Main Glass Panel with rolling credits aesthetic */}
+      {/* Main Glass Panel */}
       <div
         className="glass-panel"
         style={{
-          padding: '24px 20px',
+          width: '100%',
+          maxWidth: '480px',
+          padding: '18px 20px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '16px',
-          maxHeight: '380px',
-          overflowY: 'auto',
-          textAlign: 'center',
+          gap: '12px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#FFB7C5', fontSize: '0.82rem', fontWeight: 700 }}>
-          <Sparkles size={14} /> A BESPOKE CREATIVE STUDIO PRODUCTION
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#FFB7C5', fontSize: '0.75rem', fontWeight: 700 }}>
+          <Sparkles size={13} /> A BESPOKE CREATIVE STUDIO PRODUCTION
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', width: '100%', padding: '10px 0' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
           {CREDITS.map((c, i) => (
-            <div key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '10px' }}>
+            <div key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)', paddingBottom: '8px' }}>
               <div
                 style={{
-                  fontSize: '0.68rem',
+                  fontSize: '0.64rem',
                   fontFamily: 'var(--font-mono)',
                   color: '#847693',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
-                  marginBottom: '2px',
                 }}
               >
                 {c.role}
               </div>
               <div
                 style={{
-                  fontSize: '0.92rem',
+                  fontSize: '0.88rem',
                   fontWeight: 800,
                   color: c.name.includes('बाळ') ? '#FF2A85' : '#FDFBFF',
+                  marginTop: '1px',
                 }}
               >
                 {c.name}
@@ -89,20 +87,20 @@ export const CreditsScene: React.FC = () => {
         {/* Dedication Banner */}
         <div
           style={{
-            marginTop: '8px',
-            padding: '12px 16px',
-            borderRadius: '12px',
+            marginTop: '4px',
+            padding: '10px 14px',
+            borderRadius: '10px',
             background: 'rgba(255, 42, 133, 0.1)',
             border: '1px solid rgba(255, 42, 133, 0.3)',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
             color: '#FFB7C5',
-            fontSize: '0.82rem',
+            fontSize: '0.78rem',
             fontWeight: 700,
           }}
         >
-          <Heart size={16} fill="#FF2A85" color="#FF2A85" />
+          <Heart size={14} fill="#FF2A85" color="#FF2A85" />
           <span>Dedicated with sincere respect and affection to बाळ.</span>
         </div>
       </div>
@@ -114,23 +112,24 @@ export const CreditsScene: React.FC = () => {
         onClick={nextScene}
         style={{
           width: '100%',
-          padding: '16px',
-          borderRadius: '16px',
+          maxWidth: '480px',
+          padding: '13px',
+          borderRadius: '12px',
           background: 'linear-gradient(135deg, #FFB7C5, #E0C3FC)',
           border: 'none',
           color: '#1E1624',
           fontWeight: 800,
-          fontSize: '0.96rem',
+          fontSize: '0.88rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '10px',
+          gap: '8px',
           cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(255, 183, 197, 0.35)',
+          boxShadow: '0 4px 18px rgba(255, 183, 197, 0.3)',
         }}
       >
         <span>Wait... Post-Credits Scene? 🎬</span>
-        <ArrowRight size={18} />
+        <ArrowRight size={16} />
       </motion.button>
     </div>
   );

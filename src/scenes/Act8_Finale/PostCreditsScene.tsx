@@ -101,41 +101,41 @@ export const PostCreditsScene: React.FC = () => {
       </div>
 
       {/* Replay Presentation Button */}
-      <div style={{ display: 'flex', gap: '12px', marginTop: '10px' }}>
+      <div style={{ display: 'flex', gap: '10px', marginTop: '6px', flexWrap: 'wrap', justifyContent: 'center' }}>
         <motion.button
-          whileHover={{ scale: 1.04 }}
+          whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.96 }}
           onClick={handleRestart}
           style={{
-            padding: '14px 24px',
+            padding: '12px 20px',
             borderRadius: '999px',
             background: 'rgba(255, 255, 255, 0.06)',
             border: '1px solid rgba(224, 195, 252, 0.3)',
             color: '#FDFBFF',
             fontWeight: 700,
-            fontSize: '0.88rem',
+            fontSize: '0.84rem',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
             cursor: 'pointer',
           }}
         >
-          <RotateCcw size={16} />
+          <RotateCcw size={15} />
           <span>Replay from Beginning</span>
         </motion.button>
 
         <motion.button
-          whileHover={{ scale: 1.04 }}
+          whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.96 }}
           onClick={() => setDrawerOpen(true)}
           style={{
-            padding: '14px 24px',
+            padding: '12px 20px',
             borderRadius: '999px',
             background: 'linear-gradient(135deg, #FFB7C5, #E0C3FC)',
             border: 'none',
             color: '#1E1624',
             fontWeight: 800,
-            fontSize: '0.88rem',
+            fontSize: '0.84rem',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
@@ -143,7 +143,7 @@ export const PostCreditsScene: React.FC = () => {
             boxShadow: '0 4px 18px rgba(255, 183, 197, 0.35)',
           }}
         >
-          <Sparkles size={16} />
+          <Sparkles size={15} />
           <span>Browse All Scenes</span>
         </motion.button>
       </div>

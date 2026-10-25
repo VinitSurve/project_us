@@ -1,190 +1,107 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
-import { Crown, Sparkles, Heart, Star, ArrowRight, Cat } from 'lucide-react';
+import { Sparkles, Heart, Cat } from 'lucide-react';
 
 export const CandidateBScene: React.FC = () => {
-  const { nextScene } = usePresentation();
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-      {/* Header with EXACT required title */}
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        gap: '20px',
+        padding: '10px 0',
+      }}
+    >
       <div>
-        <div
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            color: '#FF2A85',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            marginBottom: '4px',
-          }}
-        >
-          <Crown size={14} /> VIP DOSSIER // CHIEF INSPIRATION
-        </div>
-        {/* Exact Title as strictly specified */}
-        <h1
+        {/* Exact Required Title */}
+        <motion.h1
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           className="font-marathi"
           style={{
-            fontSize: 'clamp(2.4rem, 8vw, 3.4rem)',
+            fontSize: 'clamp(2.8rem, 10vw, 4.2rem)',
             fontWeight: 800,
             lineHeight: 1.1,
-            background: 'linear-gradient(135deg, #FFFFFF 20%, #FFB7C5 60%, #FF2A85 100%)',
+            background: 'linear-gradient(135deg, #FFFFFF 20%, #FFB7C5 70%, #FF2A85 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             letterSpacing: '0.02em',
           }}
         >
           बाळ
-        </h1>
-      </div>
-
-      {/* Main Scrapbook Panel with stickers and personal appreciation */}
-      <div
-        className="glass-panel"
-        style={{
-          padding: '24px 20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          position: 'relative',
-          overflow: 'hidden',
-          border: '1px solid rgba(255, 42, 133, 0.35)',
-          boxShadow: '0 12px 35px rgba(255, 42, 133, 0.2)',
-          maxHeight: '390px',
-          overflowY: 'auto',
-        }}
-      >
-        {/* Decorative Cat Sticker */}
+        </motion.h1>
         <div
           style={{
-            position: 'absolute',
-            top: '12px',
-            right: '16px',
-            background: 'rgba(255, 183, 197, 0.2)',
-            border: '1px dashed #FFB7C5',
-            padding: '4px 10px',
-            borderRadius: '999px',
-            fontSize: '0.72rem',
-            color: '#FFB7C5',
-            fontWeight: 700,
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
-            gap: '4px',
+            gap: '6px',
+            fontSize: '0.74rem',
+            color: '#FFB7C5',
+            background: 'rgba(255, 42, 133, 0.15)',
+            padding: '3px 12px',
+            borderRadius: '999px',
+            marginTop: '4px',
+            fontWeight: 700,
           }}
         >
-          <Cat size={13} /> September 4 Royalty
+          <Cat size={12} /> September 4 Royalty
+        </div>
+      </div>
+
+      {/* Intimate Warm Scrapbook Card */}
+      <motion.div
+        initial={{ y: 15, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        style={{
+          width: '100%',
+          maxWidth: '380px',
+          background: 'linear-gradient(145deg, #201529, #150E1C)',
+          border: '1px solid rgba(255, 183, 197, 0.35)',
+          borderRadius: '24px',
+          padding: '26px 22px',
+          boxShadow: '0 15px 40px rgba(255, 42, 133, 0.15)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          textAlign: 'left',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#FFB7C5', fontSize: '0.88rem', fontWeight: 700 }}>
+          <Sparkles size={16} /> Fierce intellect &amp; independent drive.
         </div>
 
-        {/* Introduction */}
-        <p style={{ color: '#FDFBFF', fontSize: '0.94rem', lineHeight: 1.6, fontWeight: 500 }}>
-          The heart and spark of this entire project. A brilliant mind, an effortless laugh, and someone whose presence genuinely makes any room brighter.
-        </p>
-
-        {/* Genuine Qualities Scrapbook Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px' }}>
-          <div
-            style={{
-              padding: '12px 14px',
-              background: 'rgba(255, 255, 255, 0.04)',
-              borderRadius: '12px',
-              borderLeft: '3px solid #FF2A85',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#FFB7C5', fontWeight: 700, fontSize: '0.85rem' }}>
-              <Sparkles size={14} /> Fierce Intellect &amp; Independence
-            </div>
-            <p style={{ color: '#D8CCE6', fontSize: '0.8rem', marginTop: '3px', lineHeight: 1.45 }}>
-              Sharp, ambitious, and driven. You have clear goals and a strong sense of self that commands effortless respect.
-            </p>
-          </div>
-
-          <div
-            style={{
-              padding: '12px 14px',
-              background: 'rgba(255, 255, 255, 0.04)',
-              borderRadius: '12px',
-              borderLeft: '3px solid #E0C3FC',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#E0C3FC', fontWeight: 700, fontSize: '0.85rem' }}>
-              <Heart size={14} /> Infectious Warmth &amp; Humor
-            </div>
-            <p style={{ color: '#D8CCE6', fontSize: '0.8rem', marginTop: '3px', lineHeight: 1.45 }}>
-              You don&apos;t take yourself too seriously. You laugh easily, share great jokes, and make even an ordinary ride feel memorable.
-            </p>
-          </div>
-
-          <div
-            style={{
-              padding: '12px 14px',
-              background: 'rgba(255, 255, 255, 0.04)',
-              borderRadius: '12px',
-              borderLeft: '3px solid #38E09A',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#38E09A', fontWeight: 700, fontSize: '0.85rem' }}>
-              <Star size={14} /> Impeccable Aesthetic &amp; Feline Soul
-            </div>
-            <p style={{ color: '#D8CCE6', fontSize: '0.8rem', marginTop: '3px', lineHeight: 1.45 }}>
-              From crochet cat-ear clips to spotting cats on the road, your aesthetic taste and love for animals is truly 10/10.
-            </p>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#E0C3FC', fontSize: '0.88rem', fontWeight: 700 }}>
+          <Heart size={16} /> Effortless warmth that brightens any room.
         </div>
 
-        {/* Small personal appreciation note */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#38E09A', fontSize: '0.88rem', fontWeight: 700 }}>
+          <Cat size={16} /> Iconic aesthetic &amp; undeniable cat whisperer.
+        </div>
+
         <div
-          className="paper-sheet"
           style={{
-            padding: '12px 14px',
-            background: '#FFFDF9',
-            color: '#231C18',
-            borderRadius: '10px',
-            border: '1px solid #E8E0D2',
+            marginTop: '12px',
+            paddingTop: '12px',
+            borderTop: '1px dashed rgba(255, 255, 255, 0.1)',
           }}
         >
           <p
             className="font-handwriting"
             style={{
-              fontSize: '1.15rem',
+              fontSize: '1.35rem',
+              color: '#FFB7C5',
               lineHeight: 1.35,
-              color: '#D81B60',
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
-            &ldquo;You never have to perform or pretend. You are simply wonderful just being you.&rdquo;
+            &ldquo;You never have to perform or pretend. You are simply wonderful being you.&rdquo;
           </p>
         </div>
-      </div>
-
-      {/* Button */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={nextScene}
-        style={{
-          width: '100%',
-          padding: '16px',
-          borderRadius: '16px',
-          background: 'linear-gradient(135deg, #FF2A85, #FFB7C5)',
-          border: 'none',
-          color: '#FFF',
-          fontWeight: 800,
-          fontSize: '0.96rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(255, 42, 133, 0.35)',
-        }}
-      >
-        <span>Examine The Proposed Duo</span>
-        <ArrowRight size={18} />
-      </motion.button>
+      </motion.div>
     </div>
   );
 };

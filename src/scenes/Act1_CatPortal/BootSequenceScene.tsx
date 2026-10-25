@@ -1,201 +1,156 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
-import { Terminal, Cpu, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import { soundManager } from '../../utils/sound';
 
-const BOOT_LOGS = [
-  'Initializing unnecessary romantic infrastructure...',
-  'Loading 37,000 cat memes into high-speed memory...',
-  'Calibrating yapping tolerance to maximum infinity...',
-  'Detecting suspicious emotional compatibility... [CRITICAL MATCH]',
-  'Recruiting unqualified feline consultant... [Billi-Bot Hired]',
-  'Romantic proposal successfully compiled without fatal errors.',
+const BOOT_PUNCHES = [
+  { label: '37,000 Cat Memes', status: 'LOADED', color: '#FFB7C5' },
+  { label: 'Yapping Tolerance', status: 'INFINITY', color: '#00F0FF' },
+  { label: 'Emotional Compatibility', status: 'CRITICAL MATCH', color: '#38E09A' },
+  { label: 'Overthinking Units', status: 'MAX CAPACITY', color: '#FFE600' },
 ];
 
 export const BootSequenceScene: React.FC = () => {
   const { nextScene } = usePresentation();
-  const [completedSteps, setCompletedSteps] = useState<number>(0);
-  const [isReady, setIsReady] = useState(false);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCompletedSteps((prev) => {
-        if (prev < BOOT_LOGS.length) {
+    const timer = setInterval(() => {
+      setStep((prev) => {
+        if (prev < BOOT_PUNCHES.length) {
           soundManager.playClick();
           return prev + 1;
-        } else {
-          clearInterval(interval);
-          setIsReady(true);
-          soundManager.playBell();
-          return prev;
         }
+        clearInterval(timer);
+        soundManager.playBell();
+        return prev;
       });
-    }, 450);
+    }, 420);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(timer);
   }, []);
 
+  const isReady = step >= BOOT_PUNCHES.length;
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      {/* Top Header Tag */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <span
-          style={{
-            background: 'rgba(255, 183, 197, 0.15)',
-            border: '1px solid rgba(255, 183, 197, 0.4)',
-            color: '#FFB7C5',
-            padding: '4px 12px',
-            borderRadius: '999px',
-            fontSize: '0.75rem',
-            fontWeight: 700,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-          }}
-        >
-          <Cpu size={12} /> KITTEN_KERNEL_v4.2.0
-        </span>
-        <span style={{ color: '#847693', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
-          SECURE_PORT_69420
-        </span>
-      </div>
-
-      {/* Main Terminal Window */}
-      <div
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        gap: '24px',
+        padding: '10px 0',
+      }}
+    >
+      {/* Animated Glowing Cyber-Kitten Avatar */}
+      <motion.div
+        animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
+        transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
         style={{
-          background: '#16101E',
-          border: '1px solid rgba(224, 195, 252, 0.25)',
-          borderRadius: '18px',
-          boxShadow: '0 15px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Terminal Header */}
-        <div
-          style={{
-            background: 'rgba(255, 255, 255, 0.04)',
-            padding: '10px 16px',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FF5F56' }} />
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#FFBD2E' }} />
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#27C93F' }} />
-            <span
-              style={{
-                marginLeft: '8px',
-                fontSize: '0.72rem',
-                fontFamily: 'var(--font-mono)',
-                color: '#BDB0C9',
-              }}
-            >
-              proposal_boot_diagnostic.sh
-            </span>
-          </div>
-          <Terminal size={14} color="#847693" />
-        </div>
-
-        {/* Logs */}
-        <div
-          style={{
-            padding: '18px 16px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.82rem',
-            lineHeight: 1.6,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '8px',
-            minHeight: '220px',
-          }}
-        >
-          {BOOT_LOGS.slice(0, completedSteps).map((log, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '8px',
-                color: index === BOOT_LOGS.length - 1 ? '#38E09A' : '#E0C3FC',
-              }}
-            >
-              <span style={{ color: '#847693', userSelect: 'none' }}>
-                [{String((index * 0.32 + 0.12).toFixed(2))}s]
-              </span>
-              <span>{log}</span>
-            </motion.div>
-          ))}
-
-          {!isReady && (
-            <motion.div
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ repeat: Infinity, duration: 0.8 }}
-              style={{ color: '#FFB7C5', display: 'flex', alignItems: 'center', gap: '6px' }}
-            >
-              <span style={{ color: '#847693' }}>&gt;</span>
-              <span>Calibrating cuteness levels...</span>
-            </motion.div>
-          )}
-
-          {isReady && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              style={{
-                marginTop: '10px',
-                padding: '10px 12px',
-                background: 'rgba(56, 224, 154, 0.12)',
-                border: '1px solid rgba(56, 224, 154, 0.3)',
-                borderRadius: '10px',
-                color: '#38E09A',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontSize: '0.8rem',
-              }}
-            >
-              <CheckCircle2 size={16} />
-              <span>Diagnostic Complete: Zero Red Flags. 100% Wholesome Potential.</span>
-            </motion.div>
-          )}
-        </div>
-      </div>
-
-      {/* Action to proceed */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={nextScene}
-        disabled={!isReady}
-        style={{
-          width: '100%',
-          padding: '16px 20px',
-          borderRadius: '16px',
-          background: isReady
-            ? 'linear-gradient(135deg, #FFB7C5, #E0C3FC)'
-            : 'rgba(255, 255, 255, 0.05)',
-          border: 'none',
-          color: isReady ? '#1E1624' : '#5A4F68',
-          fontSize: '0.95rem',
-          fontWeight: 700,
+          width: '100px',
+          height: '100px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255, 183, 197, 0.25) 0%, rgba(30, 22, 36, 0.9) 70%)',
+          border: '2px solid rgba(255, 183, 197, 0.5)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '10px',
-          cursor: isReady ? 'pointer' : 'default',
-          boxShadow: isReady ? '0 8px 24px rgba(255, 183, 197, 0.35)' : 'none',
-          transition: 'all 0.2s ease',
+          boxShadow: '0 0 35px rgba(255, 183, 197, 0.3)',
+          fontSize: '3rem',
         }}
       >
-        <span>Enter Classified Proposal</span>
-        <ArrowRight size={18} />
-      </motion.button>
+        🐱
+      </motion.div>
+
+      {/* Title */}
+      <div>
+        <h1
+          style={{
+            fontSize: 'clamp(1.8rem, 6vw, 2.6rem)',
+            fontWeight: 900,
+            letterSpacing: '-0.03em',
+            background: 'linear-gradient(135deg, #FFF 30%, #FFB7C5 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
+          PROJECT: US
+        </h1>
+        <p style={{ color: '#847693', fontSize: '0.8rem', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
+          INITIALIZING SECURE FELINE CONNECTION...
+        </p>
+      </div>
+
+      {/* Kinetic Status Grid */}
+      <div
+        style={{
+          width: '100%',
+          maxWidth: '340px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '8px',
+        }}
+      >
+        {BOOT_PUNCHES.map((item, idx) => {
+          const visible = idx < step;
+          return (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: visible ? 1 : 0.2, y: visible ? 0 : 8 }}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '10px 14px',
+                background: visible ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.01)',
+                border: visible ? `1px solid ${item.color}44` : '1px solid rgba(255,255,255,0.04)',
+                borderRadius: '10px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.78rem',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              <span style={{ color: '#D8CCE6' }}>{item.label}</span>
+              <span style={{ color: visible ? item.color : '#5A4F68', fontWeight: 800 }}>
+                {visible ? `[ ${item.status} ]` : '[ ... ]'}
+              </span>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Big Tactile Proceed Prompt */}
+      {isReady && (
+        <motion.button
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={nextScene}
+          style={{
+            marginTop: '8px',
+            padding: '14px 28px',
+            borderRadius: '999px',
+            background: 'linear-gradient(135deg, #FFB7C5, #E0C3FC)',
+            border: 'none',
+            color: '#1E1624',
+            fontWeight: 800,
+            fontSize: '0.92rem',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            cursor: 'pointer',
+            boxShadow: '0 8px 24px rgba(255, 183, 197, 0.4)',
+          }}
+        >
+          <span>Open Proposal</span>
+          <ArrowRight size={18} />
+        </motion.button>
+      )}
     </div>
   );
 };

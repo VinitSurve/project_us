@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
 import { soundManager } from '../../utils/sound';
-import { Cat, Sparkles, ArrowRight, Heart, Zap, RefreshCw } from 'lucide-react';
+import { Cat, Zap, RefreshCw, Sparkles } from 'lucide-react';
 
 const BRAINROT_QUOTES = [
   'NO THOUGHTS, HEAD EMPTY, ONLY CATS & CHAI.',
@@ -14,7 +14,7 @@ const BRAINROT_QUOTES = [
 ];
 
 export const CatBrainrotHubScene: React.FC = () => {
-  const { nextScene, purrMeter, addPurr, unlockEasterEgg } = usePresentation();
+  const { purrMeter, addPurr, unlockEasterEgg } = usePresentation();
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [floatingEmojis, setFloatingEmojis] = useState<{ id: number; emoji: string; x: number }[]>([]);
 
@@ -22,7 +22,7 @@ export const CatBrainrotHubScene: React.FC = () => {
     soundManager.playMeow();
     addPurr(20);
 
-    const emojis = ['🐾', '💖', '✨', '😹', '🧶', '🐟'];
+    const emojis = ['🐾', '💖', '✨', '😻', '🧶', '🐟'];
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
     const newEmoji = { id: Date.now() + Math.random(), emoji: randomEmoji, x: Math.random() * 80 - 40 };
 
@@ -30,7 +30,7 @@ export const CatBrainrotHubScene: React.FC = () => {
 
     setTimeout(() => {
       setFloatingEmojis((prev) => prev.filter((e) => e.id !== newEmoji.id));
-    }, 1200);
+    }, 1000);
 
     if (purrMeter + 20 >= 100) {
       unlockEasterEgg('purr-master');
@@ -43,34 +43,36 @@ export const CatBrainrotHubScene: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-      {/* Header */}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', textAlign: 'center' }}>
+      {/* Badge & Title */}
       <div>
         <div
           style={{
             fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
+            fontSize: '0.72rem',
             color: '#FFE600',
-            letterSpacing: '0.1em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            display: 'flex',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: '6px',
             marginBottom: '4px',
           }}
         >
-          <Cat size={14} /> ACT VII // FELINE BRAINROT HQ
+          <Cat size={13} /> ACT VII // FELINE BRAINROT HQ
         </div>
-        <h2 style={{ fontSize: 'clamp(1.4rem, 5vw, 2rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          Cat Brainrot &amp; Petting Lab
+        <h2 style={{ fontSize: 'clamp(1.3rem, 4.5vw, 1.85rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          Petting Lab &amp; Meme Terminal
         </h2>
       </div>
 
-      {/* Main Interactive Panel */}
+      {/* Main Interactive Arcade Card */}
       <div
         className="glass-panel"
         style={{
-          padding: '22px 20px',
+          width: '100%',
+          maxWidth: '460px',
+          padding: '20px 18px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -81,14 +83,14 @@ export const CatBrainrotHubScene: React.FC = () => {
         {/* Purr Meter Progress Bar */}
         <div style={{ width: '100%' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-            <span style={{ fontSize: '0.78rem', color: '#FFB7C5', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Zap size={14} color="#FFE600" /> PURR POWER METER:
+            <span style={{ fontSize: '0.75rem', color: '#FFB7C5', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '5px' }}>
+              <Zap size={13} color="#FFE600" /> PURR POWER:
             </span>
-            <span style={{ fontSize: '0.85rem', color: '#FFE600', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>
+            <span style={{ fontSize: '0.82rem', color: '#FFE600', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>
               {purrMeter}%
             </span>
           </div>
-          <div style={{ width: '100%', height: '10px', background: 'rgba(255,255,255,0.08)', borderRadius: '999px', overflow: 'hidden' }}>
+          <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.08)', borderRadius: '999px', overflow: 'hidden' }}>
             <motion.div
               animate={{ width: `${purrMeter}%` }}
               style={{
@@ -98,23 +100,23 @@ export const CatBrainrotHubScene: React.FC = () => {
             />
           </div>
           {purrMeter >= 100 && (
-            <span style={{ fontSize: '0.72rem', color: '#38E09A', display: 'block', textAlign: 'center', marginTop: '4px', fontWeight: 700 }}>
+            <span style={{ fontSize: '0.7rem', color: '#38E09A', display: 'block', textAlign: 'center', marginTop: '6px', fontWeight: 700 }}>
               🐾 MAXIMUM PURR REACHED! BILLI-BOT IS THRIVING! 🐾
             </span>
           )}
         </div>
 
         {/* Petting Zone */}
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', padding: '10px 0' }}>
           {floatingEmojis.map((e) => (
             <motion.div
               key={e.id}
               initial={{ opacity: 1, y: 0, x: e.x, scale: 0.8 }}
-              animate={{ opacity: 0, y: -70, scale: 1.4 }}
-              transition={{ duration: 1 }}
+              animate={{ opacity: 0, y: -65, scale: 1.4 }}
+              transition={{ duration: 0.9 }}
               style={{
                 position: 'absolute',
-                top: '20px',
+                top: '10px',
                 left: '50%',
                 fontSize: '1.6rem',
                 pointerEvents: 'none',
@@ -125,12 +127,12 @@ export const CatBrainrotHubScene: React.FC = () => {
           ))}
 
           <motion.div
-            whileHover={{ scale: 1.08 }}
+            whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.92 }}
             onClick={handlePet}
             style={{
-              width: '130px',
-              height: '130px',
+              width: '120px',
+              height: '120px',
               borderRadius: '50%',
               background: 'radial-gradient(circle, #FFB7C5 0%, #2D1F36 80%)',
               border: '3px solid #FFB7C5',
@@ -139,12 +141,13 @@ export const CatBrainrotHubScene: React.FC = () => {
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              boxShadow: '0 0 30px rgba(255, 183, 197, 0.4)',
+              boxShadow: '0 0 26px rgba(255, 183, 197, 0.4)',
+              userSelect: 'none',
             }}
           >
-            <span style={{ fontSize: '3.4rem', userSelect: 'none' }}>😻</span>
-            <span style={{ fontSize: '0.66rem', color: '#FFF', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              Tap To Pet Me!
+            <span style={{ fontSize: '3rem', lineHeight: 1 }}>😻</span>
+            <span style={{ fontSize: '0.62rem', color: '#FFF', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: '4px' }}>
+              Tap to Pet
             </span>
           </motion.div>
         </div>
@@ -160,10 +163,11 @@ export const CatBrainrotHubScene: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             gap: '8px',
+            textAlign: 'left',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.72rem', color: '#FFE600', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>
+            <span style={{ fontSize: '0.68rem', color: '#FFE600', fontWeight: 800, fontFamily: 'var(--font-mono)' }}>
               MEME_TRANSMISSION #{quoteIndex + 1}
             </span>
             <button
@@ -174,47 +178,26 @@ export const CatBrainrotHubScene: React.FC = () => {
                 color: '#FFF',
                 padding: '4px 8px',
                 borderRadius: '6px',
-                fontSize: '0.7rem',
+                fontSize: '0.68rem',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px',
               }}
             >
-              <RefreshCw size={11} /> Next Meme
+              <RefreshCw size={10} /> Next Meme
             </button>
           </div>
-          <div style={{ color: '#FDFBFF', fontSize: '0.86rem', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
+          <div style={{ color: '#FDFBFF', fontSize: '0.82rem', fontWeight: 700, fontFamily: 'var(--font-mono)', lineHeight: 1.4 }}>
             &ldquo;{BRAINROT_QUOTES[quoteIndex]}&rdquo;
           </div>
         </div>
       </div>
 
-      {/* Button */}
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={nextScene}
-        style={{
-          width: '100%',
-          padding: '16px',
-          borderRadius: '16px',
-          background: 'linear-gradient(135deg, #FFE600, #FFB7C5)',
-          border: 'none',
-          color: '#1E1624',
-          fontWeight: 800,
-          fontSize: '0.96rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '10px',
-          cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(255, 230, 0, 0.35)',
-        }}
-      >
-        <span>Proceed to Founder&apos;s Sincere Note</span>
-        <ArrowRight size={18} />
-      </motion.button>
+      <div style={{ fontSize: '0.75rem', color: '#847693', display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <Sparkles size={12} color="#FFB7C5" />
+        <span>Next up: The sincere part (No more brainrot)</span>
+      </div>
     </div>
   );
 };
