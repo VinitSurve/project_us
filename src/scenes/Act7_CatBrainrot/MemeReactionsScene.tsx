@@ -10,8 +10,9 @@ const STAGES = [
     title: 'Waiting for your message',
     emoji: '👀🐱',
     desc: 'Casually refreshing phone every 12 seconds while pretending to write serious code.',
-    memeTag: 'Cat staring intensely at screen',
+    memeTag: 'Side-Eye Cat',
     color: '#FFE600',
+    src: '/memes/reactions/side_eye_cat.jpg',
   },
   {
     id: 'stage-2',
@@ -19,8 +20,9 @@ const STAGES = [
     title: 'When your notification pops up',
     emoji: '⚡😻',
     desc: 'Instant dopamine spike. Uncontrollable grin in public. Zero professional composure.',
-    memeTag: 'Happy vibing cat / Popcat',
+    memeTag: 'Popcat (High Frequency)',
     color: '#38E09A',
+    src: '/memes/reactions/popcat.gif',
   },
   {
     id: 'stage-3',
@@ -28,8 +30,9 @@ const STAGES = [
     title: 'Remembering a random joke from our ride',
     emoji: '🛵😹',
     desc: 'Laughing out loud hours later because a stray thought crossed my mind.',
-    memeTag: 'Cat chuckling uncontrollably',
+    memeTag: 'Vibing Cat',
     color: '#FFB7C5',
+    src: '/memes/reactions/vibing_cat.gif',
   },
   {
     id: 'stage-4',
@@ -37,8 +40,9 @@ const STAGES = [
     title: 'Trying to act completely normal',
     emoji: '🕴️🐈',
     desc: 'Proceeds to build an entire interactive 19-scene cat website instead.',
-    memeTag: 'Awkward polite cat',
+    memeTag: 'Smudge the Cat',
     color: '#00F0FF',
+    src: '/memes/reactions/smudge_cat.jpg',
   },
 ];
 
@@ -148,7 +152,44 @@ export const MemeReactionsScene: React.FC = () => {
             textAlign: 'center',
           }}
         >
-          <div style={{ fontSize: '2.8rem', lineHeight: 1 }}>{current.emoji}</div>
+          {/* Real Curated Meme from dataset */}
+          <div
+            style={{
+              width: '100%',
+              height: '135px',
+              borderRadius: '14px',
+              overflow: 'hidden',
+              position: 'relative',
+              background: '#0d0914',
+              border: `1.5px solid ${current.color}33`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <img
+              src={current.src}
+              alt={current.title}
+              loading="lazy"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                borderRadius: '10px',
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: '6px',
+                right: '8px',
+                fontSize: '1.1rem',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.6))',
+              }}
+            >
+              {current.emoji}
+            </div>
+          </div>
 
           <div>
             <div

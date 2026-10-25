@@ -151,14 +151,31 @@ export const ResponseScreenScene: React.FC = () => {
               padding: '12px 14px',
               background: 'rgba(255, 255, 255, 0.04)',
               border: '1px dashed rgba(224, 195, 252, 0.25)',
-              borderRadius: '10px',
+              borderRadius: '12px',
               fontSize: '0.82rem',
               lineHeight: 1.5,
               color: '#FDFBFF',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
             }}
           >
             {userResponse === 'yes' && (
-              <span>🎉 <strong>Wonderful!</strong> I am truly excited. Chai, good conversation, and zero pressure. Thank you!</span>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <img
+                  src="/memes/finale/happy_celebrate.gif"
+                  alt="Happy Dancing Kitten"
+                  style={{
+                    height: '90px',
+                    borderRadius: '10px',
+                    objectFit: 'contain',
+                    border: '1px solid rgba(56, 224, 154, 0.3)',
+                  }}
+                />
+                <div style={{ textAlign: 'center' }}>
+                  🎉 <strong>Wonderful!</strong> I am truly excited. Chai, good conversation, and zero pressure. Thank you!
+                </div>
+              </div>
             )}
             {userResponse === 'slow' && (
               <span>🌱 <strong>Sounds perfect.</strong> No pressure at all. Let&apos;s just talk and see where life flows naturally.</span>
@@ -196,7 +213,7 @@ export const ResponseScreenScene: React.FC = () => {
           boxShadow: '0 4px 18px rgba(255, 183, 197, 0.3)',
         }}
       >
-        <span>Roll The Executive Credits</span>
+        <span>See The Epilogue 🐾</span>
         <ArrowRight size={16} />
       </motion.button>
     </div>

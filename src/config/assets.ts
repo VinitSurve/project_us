@@ -1,12 +1,19 @@
 /**
- * ASSET CONFIGURATION & PLACEHOLDER REGISTRY
+ * ASSET CONFIGURATION & MEME ASSET MAP
  * 
- * Organized according to the project asset mapping:
- * - Cat Memes: `/public/memes/{intro,lore,reactions,cute,romance,finale}/`
- * - Photos: `/public/photos/{her,together}/`
+ * Dataset Source: https://huggingface.co/datasets/pielet/cat-memes
+ * Creator: Shiyang Jia (https://huggingface.co/pielet)
+ * License: MIT License
  * 
- * To replace placeholders with real photos or memes:
- * Drop the file into the corresponding folder and update `src` below.
+ * Assets are organized into scene-based categories:
+ * - /public/memes/intro/     (Chaotic, keyboard cat, polite cat, screaming cat)
+ * - /public/memes/lore/      (Chemistry cat, shocked cat, smug cat, two talking cats)
+ * - /public/memes/reactions/ (Side-eye cat, huh cat, vibing cat, popcat, smudge cat)
+ * - /public/memes/cute/      (Pat cat, happy cat, chipi chipi, smile cat, lil bub)
+ * - /public/memes/romance/   (Kiss cat, touched crying cat)
+ * - /public/memes/finale/    (Polite cat finale, celebrate dance cat)
+ * - /public/photos/her/      (User personal photo slot for बाळ)
+ * - /public/photos/together/ (User personal photo slot for us together)
  */
 
 export interface AssetSlot {
@@ -18,11 +25,20 @@ export interface AssetSlot {
   defaultMemeEmoji: string;
   accentColor: string;
   aspectRatio?: 'square' | 'photo-vertical' | 'photo-horizontal' | 'video';
-  src?: string; // Pointing to public/ assets
+  src?: string; // Local public path
+  attribution?: string;
 }
 
+export const DATASET_METADATA = {
+  name: 'Cat Memes Dataset',
+  id: 'pielet/cat-memes',
+  url: 'https://huggingface.co/datasets/pielet/cat-memes',
+  author: 'Shiyang Jia',
+  license: 'MIT License',
+};
+
 export const ASSET_REGISTRY: Record<string, AssetSlot> = {
-  // Photos (Placeholders until user provides personal photos)
+  // --- Personal Photos (Preserved as clearly designated placeholders) ---
   herPhoto: {
     id: 'her-photo',
     category: 'photo',
@@ -64,137 +80,173 @@ export const ASSET_REGISTRY: Record<string, AssetSlot> = {
     aspectRatio: 'photo-horizontal',
   },
 
-  // Cat Memes (Pre-wired with starter SVG cat-meme pack)
+  // --- Curated Cat Memes (from pielet/cat-memes MIT dataset) ---
   introCatMeme: {
     id: 'intro-cat-meme',
     category: 'meme',
-    title: 'Meme: Overwhelmed Coder Cat',
-    description: 'I came here to be normal. The cat had other plans.',
-    suggestedFileName: 'public/memes/intro/starter_cat_meme.svg',
+    title: 'Keyboard Cat',
+    description: 'Typing intensely at 2 AM coding an entire presentation.',
+    suggestedFileName: 'public/memes/intro/keyboard_cat.jpg',
     defaultMemeEmoji: '⌨️🐱',
     accentColor: '#FFE600',
     aspectRatio: 'photo-horizontal',
-    src: '/memes/intro/starter_cat_meme.svg',
+    src: '/memes/intro/keyboard_cat.jpg',
+    attribution: 'pielet/cat-memes · Keyboard Cat',
   },
   summonsCatMeme: {
     id: 'summons-cat-meme',
     category: 'meme',
-    title: 'Meme: You Have Been Chosen',
-    description: 'You have been formally summoned by a cat.',
-    suggestedFileName: 'public/memes/intro/starter_cat_meme.svg',
-    defaultMemeEmoji: '🐾😸',
+    title: 'Screaming Cat',
+    description: 'You have been summoned. No turning back now.',
+    suggestedFileName: 'public/memes/intro/screaming_cat.jpg',
+    defaultMemeEmoji: '🙀🐾',
     accentColor: '#FFB7C5',
     aspectRatio: 'square',
-    src: '/memes/intro/starter_cat_meme.svg',
+    src: '/memes/intro/screaming_cat.jpg',
+    attribution: 'pielet/cat-memes · Screaming Cat',
   },
   coverCatMeme: {
     id: 'cover-cat-meme',
     category: 'meme',
-    title: 'Meme: Polite Cat (Beluga)',
-    description: 'Looking expectant and hopeful.',
-    suggestedFileName: 'public/memes/intro/starter_cat_meme.svg',
+    title: 'Polite Cat (Beluga)',
+    description: 'Looking expectant, polite, and hopeful.',
+    suggestedFileName: 'public/memes/intro/polite_cat.webp',
     defaultMemeEmoji: '🎩🐱',
     accentColor: '#00F0FF',
     aspectRatio: 'square',
-    src: '/memes/intro/starter_cat_meme.svg',
+    src: '/memes/intro/polite_cat.webp',
+    attribution: 'pielet/cat-memes · Polite Cat',
   },
   hacknovaCatMeme: {
     id: 'hacknova-cat-meme',
     category: 'meme',
-    title: 'Meme: Hackathon Hacker Cat',
-    description: 'When the lore gets so specific only two people understand.',
-    suggestedFileName: 'public/memes/lore/starter_cat_meme.svg',
-    defaultMemeEmoji: '🕶️😼',
+    title: 'Chemistry Cat',
+    description: 'Testing conversational chemistry under hackathon lights.',
+    suggestedFileName: 'public/memes/lore/chemistry_cat.jpg',
+    defaultMemeEmoji: '🧪😼',
     accentColor: '#00F0FF',
     aspectRatio: 'photo-horizontal',
-    src: '/memes/lore/starter_cat_meme.svg',
+    src: '/memes/lore/chemistry_cat.jpg',
+    attribution: 'pielet/cat-memes · Chemistry Cat',
   },
   chaiRideCatMeme: {
     id: 'chai-ride-cat-meme',
     category: 'meme',
-    title: 'Meme: Cat in Passenger Seat',
-    description: 'Taking the 45-minute scenic route for one more topic.',
-    suggestedFileName: 'public/memes/lore/starter_cat_meme.svg',
+    title: 'Two Talking Cats',
+    description: 'Taking the 45-minute scenic route because the talk never ended.',
+    suggestedFileName: 'public/memes/lore/two_talking_cats.jpg',
     defaultMemeEmoji: '🛵😽',
     accentColor: '#FFD3B6',
     aspectRatio: 'photo-horizontal',
-    src: '/memes/lore/starter_cat_meme.svg',
+    src: '/memes/lore/two_talking_cats.jpg',
+    attribution: 'pielet/cat-memes · Two Talking Cats',
   },
   gunaCatMeme: {
     id: 'guna-cat-meme',
     category: 'meme',
-    title: 'Meme: Shocked Cat / Cosmic Siren',
-    description: 'When the score broke the diagnostic scale.',
-    suggestedFileName: 'public/memes/lore/starter_cat_meme.svg',
+    title: 'Shocked Cat',
+    description: 'When the 34/36 score broke the diagnostic scale.',
+    suggestedFileName: 'public/memes/lore/shocked_cat.png',
     defaultMemeEmoji: '🙀🔮',
     accentColor: '#00F0FF',
     aspectRatio: 'photo-horizontal',
-    src: '/memes/lore/starter_cat_meme.svg',
+    src: '/memes/lore/shocked_cat.png',
+    attribution: 'pielet/cat-memes · Shocked Cat',
   },
   insideJokeCatMeme: {
     id: 'inside-joke-cat-meme',
     category: 'meme',
-    title: 'Meme: Smug Cat Who Knows Lore',
-    description: 'Inside jokes & brainrot on our shared frequency.',
-    suggestedFileName: 'public/memes/lore/starter_cat_meme.svg',
+    title: 'Smug Cat',
+    description: 'When inside jokes hit our shared frequency.',
+    suggestedFileName: 'public/memes/lore/smug_cat.jpg',
     defaultMemeEmoji: '😏🐱',
     accentColor: '#FFE600',
     aspectRatio: 'square',
-    src: '/memes/lore/starter_cat_meme.svg',
+    src: '/memes/lore/smug_cat.jpg',
+    attribution: 'pielet/cat-memes · Smug Cat',
   },
   littleThingsCatMeme: {
     id: 'little-things-cat-meme',
     category: 'meme',
-    title: 'Meme: Cat with Crochet Ears',
-    description: 'No thoughts. Just happy to see you.',
-    suggestedFileName: 'public/memes/cute/starter_cat_meme.svg',
-    defaultMemeEmoji: '🧶😻',
+    title: 'Smiling Cat',
+    description: 'Warm, authentic, and genuinely happy.',
+    suggestedFileName: 'public/memes/cute/smile_cat.jpg',
+    defaultMemeEmoji: '😸✨',
     accentColor: '#FFB7C5',
     aspectRatio: 'square',
-    src: '/memes/cute/starter_cat_meme.svg',
+    src: '/memes/cute/smile_cat.jpg',
+    attribution: 'pielet/cat-memes · Smiling Cat',
   },
   duoCatMeme: {
     id: 'duo-cat-meme',
     category: 'meme',
-    title: 'Meme: Orange Cat & Calm Cat',
-    description: 'One chronic overthinker + one effortless ray of sunshine.',
-    suggestedFileName: 'public/memes/cute/starter_cat_meme.svg',
-    defaultMemeEmoji: '🐈🐈‍⬛',
+    title: 'Chipi Chipi Cat',
+    description: 'Pure energetic sunshine meeting an overthinker.',
+    suggestedFileName: 'public/memes/cute/chipi_chipi_cat.webp',
+    defaultMemeEmoji: '🎵🐈',
     accentColor: '#E0C3FC',
     aspectRatio: 'photo-horizontal',
-    src: '/memes/cute/starter_cat_meme.svg',
+    src: '/memes/cute/chipi_chipi_cat.webp',
+    attribution: 'pielet/cat-memes · Chipi Chipi Cat',
+  },
+  pettingCatMeme: {
+    id: 'petting-cat-meme',
+    category: 'meme',
+    title: 'Pat Cat',
+    description: 'Gentle loving head pats.',
+    suggestedFileName: 'public/memes/cute/pat_cat.png',
+    defaultMemeEmoji: '🐾😻',
+    accentColor: '#FFB7C5',
+    aspectRatio: 'square',
+    src: '/memes/cute/pat_cat.png',
+    attribution: 'pielet/cat-memes · Pat Cat',
   },
   softSideCatMeme: {
     id: 'soft-side-cat-meme',
     category: 'meme',
-    title: 'Meme: Shy Heart-Eyes Cat',
+    title: 'Crying Cat',
     description: 'The jokes are loud. The feeling is real.',
-    suggestedFileName: 'public/memes/romance/starter_cat_meme.svg',
+    suggestedFileName: 'public/memes/romance/crying_cat.webp',
     defaultMemeEmoji: '🥺🌸',
     accentColor: '#FFB7C5',
     aspectRatio: 'square',
-    src: '/memes/romance/starter_cat_meme.svg',
+    src: '/memes/romance/crying_cat.webp',
+    attribution: 'pielet/cat-memes · Crying Cat',
   },
   proposalCatMeme: {
     id: 'proposal-cat-meme',
     category: 'meme',
-    title: 'Meme: Cat Offering Flower',
+    title: 'Polite Cat Asking',
     description: 'One honest question. No pressure. Just you.',
-    suggestedFileName: 'public/memes/finale/starter_cat_meme.svg',
+    suggestedFileName: 'public/memes/finale/polite_cat_finale.webp',
     defaultMemeEmoji: '🌹🐱',
     accentColor: '#FF2A85',
     aspectRatio: 'square',
-    src: '/memes/finale/starter_cat_meme.svg',
+    src: '/memes/finale/polite_cat_finale.webp',
+    attribution: 'pielet/cat-memes · Polite Cat',
+  },
+  celebrateCatMeme: {
+    id: 'celebrate-cat-meme',
+    category: 'meme',
+    title: 'Happy Happy Happy Cat',
+    description: 'Jubilant jumping kitten celebration!',
+    suggestedFileName: 'public/memes/finale/happy_celebrate.gif',
+    defaultMemeEmoji: '🎉😻',
+    accentColor: '#38E09A',
+    aspectRatio: 'square',
+    src: '/memes/finale/happy_celebrate.gif',
+    attribution: 'pielet/cat-memes · Happy Cat GIF',
   },
   epilogueCatMeme: {
     id: 'epilogue-cat-meme',
     category: 'meme',
-    title: 'Meme: Sleeping Loaf Cat',
-    description: 'Billi-bot concluded its duties and is napping peacefully.',
-    suggestedFileName: 'public/memes/finale/starter_cat_meme.svg',
+    title: 'Lil Bub',
+    description: 'Resting peacefully. Always in your corner.',
+    suggestedFileName: 'public/memes/cute/lil_bub.jpg',
     defaultMemeEmoji: '😴🐾',
     accentColor: '#E0C3FC',
     aspectRatio: 'square',
-    src: '/memes/finale/starter_cat_meme.svg',
+    src: '/memes/cute/lil_bub.jpg',
+    attribution: 'pielet/cat-memes · Lil Bub',
   },
 };

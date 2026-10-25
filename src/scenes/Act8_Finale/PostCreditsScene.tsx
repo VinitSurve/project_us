@@ -140,6 +140,28 @@ export const PostCreditsScene: React.FC = () => {
           <span>Browse All Parts</span>
         </motion.button>
       </div>
+
+      {/* Dataset License & Attribution */}
+      <div
+        style={{
+          marginTop: '6px',
+          fontSize: '0.64rem',
+          color: '#847693',
+          fontFamily: 'var(--font-mono)',
+          lineHeight: 1.4,
+        }}
+      >
+        <span>Meme assets from </span>
+        <a
+          href="https://huggingface.co/datasets/pielet/cat-memes"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: '#FFB7C5', textDecoration: 'underline' }}
+        >
+          pielet/cat-memes
+        </a>
+        <span> · MIT License (Shiyang Jia)</span>
+      </div>
     </div>
   );
 };

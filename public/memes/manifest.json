@@ -1,0 +1,218 @@
+{
+  "dataset": "pielet/cat-memes",
+  "creator": "Shiyang Jia (https://huggingface.co/pielet)",
+  "source": "https://huggingface.co/datasets/pielet/cat-memes",
+  "license": "MIT",
+  "downloaded_assets": [
+    {
+      "id": "keyboard_cat",
+      "category": "intro",
+      "localPath": "/memes/intro/keyboard_cat.jpg",
+      "file_name": "keyboard-cat.jpg",
+      "animated": false,
+      "height": 191,
+      "width": 250,
+      "size_bytes": 9992
+    },
+    {
+      "id": "polite_cat",
+      "category": "intro",
+      "localPath": "/memes/intro/polite_cat.webp",
+      "file_name": "polite-cat.webp",
+      "animated": false,
+      "height": 1400,
+      "width": 1400,
+      "size_bytes": 89583
+    },
+    {
+      "id": "screaming_cat",
+      "category": "intro",
+      "localPath": "/memes/intro/screaming_cat.jpg",
+      "file_name": "screaming-cat.jpg",
+      "animated": false,
+      "height": 360,
+      "width": 360,
+      "size_bytes": 13443
+    },
+    {
+      "id": "chemistry_cat",
+      "category": "lore",
+      "localPath": "/memes/lore/chemistry_cat.jpg",
+      "file_name": "chemistry-cat.jpg",
+      "animated": false,
+      "height": 750,
+      "width": 750,
+      "size_bytes": 59130
+    },
+    {
+      "id": "shocked_cat",
+      "category": "lore",
+      "localPath": "/memes/lore/shocked_cat.png",
+      "file_name": "shocked-cat.png",
+      "animated": false,
+      "height": 119,
+      "width": 128,
+      "size_bytes": 2690
+    },
+    {
+      "id": "smug_cat",
+      "category": "lore",
+      "localPath": "/memes/lore/smug_cat.jpg",
+      "file_name": "smug-cat.jpg",
+      "animated": false,
+      "height": 616,
+      "width": 600,
+      "size_bytes": 24862
+    },
+    {
+      "id": "two_talking_cats",
+      "category": "lore",
+      "localPath": "/memes/lore/two_talking_cats.jpg",
+      "file_name": "two-talking-cats.jpg",
+      "animated": false,
+      "height": 720,
+      "width": 1280,
+      "size_bytes": 40455
+    },
+    {
+      "id": "side_eye_cat",
+      "category": "reactions",
+      "localPath": "/memes/reactions/side_eye_cat.jpg",
+      "file_name": "side-eye-cat.jpg",
+      "animated": false,
+      "height": 481,
+      "width": 514,
+      "size_bytes": 20693
+    },
+    {
+      "id": "huh_cat",
+      "category": "reactions",
+      "localPath": "/memes/reactions/huh_cat.gif",
+      "file_name": "huh-cat.gif",
+      "animated": true,
+      "height": 294,
+      "width": 165,
+      "size_bytes": 18359
+    },
+    {
+      "id": "vibing_cat",
+      "category": "reactions",
+      "localPath": "/memes/reactions/vibing_cat.gif",
+      "file_name": "vibing-cat.gif",
+      "animated": true,
+      "height": 112,
+      "width": 112,
+      "size_bytes": 20660
+    },
+    {
+      "id": "popcat",
+      "category": "reactions",
+      "localPath": "/memes/reactions/popcat.gif",
+      "file_name": "popcat.gif",
+      "animated": true,
+      "height": 186,
+      "width": 200,
+      "size_bytes": 13412
+    },
+    {
+      "id": "smudge_cat",
+      "category": "reactions",
+      "localPath": "/memes/reactions/smudge_cat.jpg",
+      "file_name": "smudge-cat.jpg",
+      "animated": false,
+      "height": 500,
+      "width": 1000,
+      "size_bytes": 67279
+    },
+    {
+      "id": "pat_cat",
+      "category": "cute",
+      "localPath": "/memes/cute/pat_cat.png",
+      "file_name": "pat_cat.png",
+      "animated": false,
+      "height": 128,
+      "width": 128,
+      "size_bytes": 25621
+    },
+    {
+      "id": "happy_happy_happy",
+      "category": "cute",
+      "localPath": "/memes/cute/happy_happy_happy.gif",
+      "file_name": "happy-happy-happy.gif",
+      "animated": true,
+      "height": 200,
+      "width": 200,
+      "size_bytes": 4241
+    },
+    {
+      "id": "chipi_chipi_cat",
+      "category": "cute",
+      "localPath": "/memes/cute/chipi_chipi_cat.webp",
+      "file_name": "chipi-chipi-cat.webp",
+      "animated": false,
+      "height": 233,
+      "width": 374,
+      "size_bytes": 132843
+    },
+    {
+      "id": "smile_cat",
+      "category": "cute",
+      "localPath": "/memes/cute/smile_cat.jpg",
+      "file_name": "smile-cat.jpg",
+      "animated": false,
+      "height": 640,
+      "width": 640,
+      "size_bytes": 34999
+    },
+    {
+      "id": "lil_bub",
+      "category": "cute",
+      "localPath": "/memes/cute/lil_bub.jpg",
+      "file_name": "lil-bub.jpg",
+      "animated": false,
+      "height": 1000,
+      "width": 1000,
+      "size_bytes": 83109
+    },
+    {
+      "id": "kiss_cat",
+      "category": "romance",
+      "localPath": "/memes/romance/kiss_cat.gif",
+      "file_name": "kiss-cat.gif",
+      "animated": true,
+      "height": 64,
+      "width": 64,
+      "size_bytes": 1163
+    },
+    {
+      "id": "crying_cat",
+      "category": "romance",
+      "localPath": "/memes/romance/crying_cat.webp",
+      "file_name": "crying-cat.webp",
+      "animated": false,
+      "height": 296,
+      "width": 312,
+      "size_bytes": 9860
+    },
+    {
+      "id": "polite_cat",
+      "category": "finale",
+      "localPath": "/memes/finale/polite_cat_finale.webp",
+      "file_name": "polite-cat.webp",
+      "animated": false,
+      "height": 1400,
+      "width": 1400,
+      "size_bytes": 89583
+    },
+    {
+      "id": "happy_happy_happy",
+      "category": "finale",
+      "localPath": "/memes/finale/happy_celebrate.gif",
+      "file_name": "happy-happy-happy.gif",
+      "animated": true,
+      "height": 200,
+      "width": 200,
+      "size_bytes": 4241
+    }
+  ]
+}
