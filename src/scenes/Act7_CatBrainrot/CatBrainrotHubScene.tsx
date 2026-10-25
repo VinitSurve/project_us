@@ -14,7 +14,7 @@ const BRAINROT_QUOTES = [
 ];
 
 export const CatBrainrotHubScene: React.FC = () => {
-  const { purrMeter, addPurr, unlockEasterEgg } = usePresentation();
+  const { purrMeter, addPurr, unlockEasterEgg, openLightbox } = usePresentation();
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [floatingEmojis, setFloatingEmojis] = useState<{ id: number; emoji: string; x: number }[]>([]);
 
@@ -100,9 +100,37 @@ export const CatBrainrotHubScene: React.FC = () => {
             />
           </div>
           {purrMeter >= 100 && (
-            <span style={{ fontSize: '0.7rem', color: '#38E09A', display: 'block', textAlign: 'center', marginTop: '6px', fontWeight: 700 }}>
-              🐾 MAXIMUM PURR REACHED! BILLI-BOT IS THRIVING! 🐾
-            </span>
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              style={{
+                marginTop: '10px',
+                padding: '8px 12px',
+                borderRadius: '12px',
+                background: 'rgba(56, 224, 154, 0.12)',
+                border: '1px solid rgba(56, 224, 154, 0.4)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                textAlign: 'left',
+                cursor: 'pointer',
+              }}
+              onClick={() => openLightbox('/photos/together/us_cat_alert.jpg', 'Banyan Tree Kitten', 'The actual kitten we befriended together under the banyan tree')}
+            >
+              <img
+                src="/photos/together/us_cat_alert.jpg"
+                alt="Banyan Tree Kitten"
+                style={{ width: '44px', height: '44px', borderRadius: '8px', objectFit: 'cover', flexShrink: 0 }}
+              />
+              <div>
+                <div style={{ fontSize: '0.74rem', color: '#38E09A', fontWeight: 800 }}>
+                  🐾 UNLOCKED: The Real Kitten We Befriended!
+                </div>
+                <div style={{ fontSize: '0.66rem', color: '#BDB0C9' }}>
+                  Tap to view our actual banyan tree companion.
+                </div>
+              </div>
+            </motion.div>
           )}
         </div>
 

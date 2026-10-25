@@ -4,6 +4,8 @@ import { usePresentation } from '../../context/PresentationContext';
 import { Heart } from 'lucide-react';
 
 export const FoundersNoteScene: React.FC = () => {
+  const { openLightbox } = usePresentation();
+
   return (
     <div
       style={{
@@ -25,18 +27,42 @@ export const FoundersNoteScene: React.FC = () => {
           background: '#FFFDF9',
           color: '#231C18',
           borderRadius: '24px',
-          padding: '32px 26px',
+          padding: '28px 24px',
           boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
           border: '1px solid #E8E0D2',
           textAlign: 'left',
           display: 'flex',
           flexDirection: 'column',
-          gap: '16px',
+          gap: '14px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#D81B60', fontWeight: 800, fontSize: '1rem' }}>
-          <Heart size={18} fill="#D81B60" />
-          <span>Dear बाळ,</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#D81B60', fontWeight: 800, fontSize: '1.05rem' }}>
+            <Heart size={18} fill="#D81B60" />
+            <span>Dear बाळ,</span>
+          </div>
+
+          <div
+            onClick={() => openLightbox('/photos/her/her_05_bouquet_candid.png', 'बाळ', 'Under the fairy light tree')}
+            style={{
+              width: '46px',
+              height: '46px',
+              borderRadius: '8px',
+              overflow: 'hidden',
+              border: '2px solid #FFF',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.18)',
+              transform: 'rotate(3deg)',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+            title="Tap to view photo"
+          >
+            <img
+              src="/photos/her/her_05_bouquet_candid.png"
+              alt="बाळ"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
         </div>
 
         <p style={{ fontSize: '0.98rem', lineHeight: 1.6, color: '#3A3027' }}>

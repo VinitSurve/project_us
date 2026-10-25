@@ -1,9 +1,17 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Terminal, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Terminal, Sparkles, Camera, Cat } from 'lucide-react';
 import { AssetPlaceholder } from '../../components/AssetPlaceholder';
+import { soundManager } from '../../utils/sound';
 
 export const HacknovaOriginScene: React.FC = () => {
+  const [viewMode, setViewMode] = useState<'photo' | 'meme'>('photo');
+
+  const toggleView = (mode: 'photo' | 'meme') => {
+    soundManager.playClick();
+    setViewMode(mode);
+  };
+
   return (
     <div
       style={{
@@ -12,7 +20,7 @@ export const HacknovaOriginScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '14px',
+        gap: '12px',
         padding: '6px 0',
       }}
     >
@@ -30,7 +38,7 @@ export const HacknovaOriginScene: React.FC = () => {
             marginBottom: '4px',
           }}
         >
-          <Sparkles size={12} /> THE ORIGIN // 2:00 AM
+          <Sparkles size={12} /> THE ORIGIN // HACKNOVA 2026
         </div>
         <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.1rem)', fontWeight: 800, color: '#FDFBFF' }}>
           The Hacknova Spark
@@ -40,13 +48,93 @@ export const HacknovaOriginScene: React.FC = () => {
         </p>
       </div>
 
-      {/* Cat Meme Slot */}
-      <AssetPlaceholder
-        slotKey="hacknovaCatMeme"
-        height="120px"
-        width="100%"
-        style={{ maxWidth: '380px' }}
-      />
+      {/* Switcher Tabs */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '6px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          padding: '3px',
+          borderRadius: '999px',
+          border: '1px solid rgba(0, 240, 255, 0.2)',
+        }}
+      >
+        <button
+          onClick={() => toggleView('photo')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: viewMode === 'photo' ? '#00F0FF' : 'transparent',
+            color: viewMode === 'photo' ? '#120E17' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          <Camera size={11} /> Us at Hacknova
+        </button>
+        <button
+          onClick={() => toggleView('meme')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: viewMode === 'meme' ? '#FFE600' : 'transparent',
+            color: viewMode === 'meme' ? '#120E17' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          <Cat size={11} /> Chemistry Cat
+        </button>
+      </div>
+
+      {/* Media Display Area */}
+      <div style={{ width: '100%', maxWidth: '380px' }}>
+        <AnimatePresence mode="wait">
+          {viewMode === 'photo' ? (
+            <motion.div
+              key="photo"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.2 }}
+            >
+              <AssetPlaceholder
+                slotKey="usTogetherHacknova"
+                height="190px"
+                width="100%"
+                objectFit="cover"
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="meme"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.2 }}
+            >
+              <AssetPlaceholder
+                slotKey="hacknovaCatMeme"
+                height="140px"
+                width="100%"
+                objectFit="contain"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* Terminal Code Snippet */}
       <motion.div

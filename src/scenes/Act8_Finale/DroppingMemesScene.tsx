@@ -4,6 +4,8 @@ import { Sparkles, Heart } from 'lucide-react';
 import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const DroppingMemesScene: React.FC = () => {
+  const [activePhoto, setActivePhoto] = React.useState<'bouquet' | 'tree' | 'meme'>('bouquet');
+
   return (
     <div
       style={{
@@ -12,7 +14,7 @@ export const DroppingMemesScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '14px',
+        gap: '12px',
         padding: '6px 0',
       }}
     >
@@ -40,13 +42,94 @@ export const DroppingMemesScene: React.FC = () => {
         </p>
       </div>
 
-      {/* Cat Meme Slot */}
-      <AssetPlaceholder
-        slotKey="softSideCatMeme"
-        height="125px"
-        width="100%"
-        style={{ maxWidth: '380px' }}
-      />
+      {/* Switcher Tabs */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '6px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          padding: '3px',
+          borderRadius: '999px',
+          border: '1px solid rgba(224, 195, 252, 0.25)',
+        }}
+      >
+        <button
+          onClick={() => setActivePhoto('bouquet')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: activePhoto === 'bouquet' ? '#FFB7C5' : 'transparent',
+            color: activePhoto === 'bouquet' ? '#1E1624' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          🌹 Roses &amp; Cake
+        </button>
+        <button
+          onClick={() => setActivePhoto('tree')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: activePhoto === 'tree' ? '#E0C3FC' : 'transparent',
+            color: activePhoto === 'tree' ? '#1E1624' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          ✨ Floral Candid
+        </button>
+        <button
+          onClick={() => setActivePhoto('meme')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: activePhoto === 'meme' ? '#38E09A' : 'transparent',
+            color: activePhoto === 'meme' ? '#1E1624' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          🥺 Soft Meme
+        </button>
+      </div>
+
+      {/* Media Slot */}
+      <div style={{ width: '100%', maxWidth: '380px' }}>
+        {activePhoto === 'bouquet' && (
+          <AssetPlaceholder
+            slotKey="herCafeBouquet"
+            height="200px"
+            width="100%"
+            objectFit="cover"
+          />
+        )}
+        {activePhoto === 'tree' && (
+          <AssetPlaceholder
+            slotKey="herBouquetCandid"
+            height="200px"
+            width="100%"
+            objectFit="cover"
+          />
+        )}
+        {activePhoto === 'meme' && (
+          <AssetPlaceholder
+            slotKey="softSideCatMeme"
+            height="130px"
+            width="100%"
+            objectFit="contain"
+          />
+        )}
+      </div>
 
       {/* Gentle transition card */}
       <motion.div

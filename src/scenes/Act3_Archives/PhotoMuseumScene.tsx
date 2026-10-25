@@ -8,21 +8,33 @@ import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 const MEMORIES = [
   {
     slotKey: 'usTogetherMoments',
-    title: 'Moments We’ve Shared',
-    caption: 'Laughter, effortless banter, and time that moves too fast.',
-    stickyNote: 'The exact moment I realized conversations with you feel like home.',
+    title: 'The Cat That Befriended Us 🐾',
+    caption: 'Under the banyan tree with a sweet sleeping tabby in your lap.',
+    stickyNote: 'The feline compatibility sensors spiked to 100%. One of my absolute favorite memories.',
+  },
+  {
+    slotKey: 'usPlayfulCamera',
+    title: 'Camera Hide & Seek 📱',
+    caption: 'Ducking playfully behind the phone screen while I smile.',
+    stickyNote: 'You make everyday moments feel effortless, unscripted, and genuinely joyful.',
+  },
+  {
+    slotKey: 'usPeaceSmile',
+    title: 'Effortless Smiles Under the Tree ✌️',
+    caption: 'Peace sign, natural laughter, and quiet afternoon breeze.',
+    stickyNote: 'Conversations with you always feel like taking a deep, calm breath.',
   },
   {
     slotKey: 'usTogetherHacknova',
-    title: 'The Hacknova Milestone',
-    caption: 'Where two people with zero sleep found endless things to discuss.',
-    stickyNote: 'Surrounded by code and caffeine, but you were the best part.',
+    title: 'HackNova 2026 Milestone 💻',
+    caption: 'Where two tech enthusiasts first crossed paths.',
+    stickyNote: 'Surrounded by code and fluorescent lights, but you were the highlight of the entire event.',
   },
   {
     slotKey: 'usTogetherChai',
-    title: 'The Evening Chai Runs',
-    caption: 'Cool night breeze and taking the scenic route home.',
-    stickyNote: '“Just one more topic before we head back...”',
+    title: 'The Roadside Evening Ride 🛵',
+    caption: 'Taking the scenic route because the conversation never stopped.',
+    stickyNote: '“Just one more turn around the block before we head home...”',
   },
 ];
 
@@ -138,8 +150,9 @@ export const PhotoMuseumScene: React.FC = () => {
             <div style={{ marginTop: '10px', textAlign: 'left' }}>
               <h3 style={{ fontSize: '0.92rem', fontWeight: 800, color: '#231C18' }}>{current.title}</h3>
               <p style={{ fontSize: '0.74rem', color: '#5A5047', marginTop: '1px' }}>{current.caption}</p>
-              <div style={{ marginTop: '6px', fontSize: '0.68rem', color: '#B388FF', fontWeight: 700 }}>
-                ↻ Tap photo to flip card
+              <div style={{ marginTop: '6px', fontSize: '0.66rem', color: '#9C27B0', fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
+                <span>↻ Tap to flip card</span>
+                <span>🔍 Tap photo to zoom</span>
               </div>
             </div>
           </div>

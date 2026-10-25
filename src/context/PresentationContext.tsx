@@ -3,6 +3,12 @@ import { SCENES, ACTS, EASTER_EGGS, SYSTEM_INTERRUPTIONS } from '../content/prop
 import { SceneMeta, ActMeta, ProposalResponse, SystemInterruption } from '../types/presentation';
 import { soundManager } from '../utils/sound';
 
+export interface LightboxItem {
+  src: string;
+  title?: string;
+  caption?: string;
+}
+
 interface PresentationContextType {
   currentSceneIndex: number;
   currentScene: SceneMeta;
@@ -33,6 +39,9 @@ interface PresentationContextType {
   dismissInterruption: () => void;
   purrMeter: number;
   addPurr: (amount: number) => void;
+  lightboxItem: LightboxItem | null;
+  openLightbox: (src: string, title?: string, caption?: string) => void;
+  closeLightbox: () => void;
 }
 
 const PresentationContext = createContext<PresentationContextType | undefined>(undefined);
@@ -47,6 +56,17 @@ export const PresentationProvider: React.FC<{ children: ReactNode }> = ({ childr
   const [userResponse, setUserResponse] = useState<ProposalResponse>(null);
   const [activeInterruption, setActiveInterruption] = useState<SystemInterruption | null>(null);
   const [purrMeter, setPurrMeter] = useState<number>(20);
+  const [lightboxItem, setLightboxItem] = useState<LightboxItem | null>(null);
+
+  const openLightbox = (src: string, title?: string, caption?: string) => {
+    soundManager.playClick();
+    setLightboxItem({ src, title, caption });
+  };
+
+  const closeLightbox = () => {
+    soundManager.playClick();
+    setLightboxItem(null);
+  };
 
   const currentScene = SCENES[currentSceneIndex] || SCENES[0];
   const currentAct = ACTS.find((a) => a.id === currentScene.actId) || ACTS[0];
@@ -144,6 +164,7 @@ export const PresentationProvider: React.FC<{ children: ReactNode }> = ({ childr
       } else if (e.key === 'Escape') {
         setDrawerOpen(false);
         setActiveInterruption(null);
+        setLightboxItem(null);
       }
     };
 
@@ -196,6 +217,9 @@ export const PresentationProvider: React.FC<{ children: ReactNode }> = ({ childr
         dismissInterruption,
         purrMeter,
         addPurr,
+        lightboxItem,
+        openLightbox,
+        closeLightbox,
       }}
     >
       {children}

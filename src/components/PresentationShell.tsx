@@ -5,6 +5,7 @@ import { SceneNavigation } from './SceneNavigation';
 import { CatCompanion } from './CatCompanion';
 import { SceneDrawer } from './SceneDrawer';
 import { SystemInterruptionModal } from './SystemInterruptionModal';
+import { ImageLightboxModal } from './ImageLightboxModal';
 
 interface PresentationShellProps {
   children: React.ReactNode;
@@ -169,6 +170,9 @@ export const PresentationShell: React.FC<PresentationShellProps> = ({ children }
 
       {/* Fictional System Alert Modals */}
       <SystemInterruptionModal />
+
+      {/* Fullscreen Photo Lightbox Modal */}
+      <ImageLightboxModal />
     </div>
   );
 };

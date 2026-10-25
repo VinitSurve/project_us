@@ -28,9 +28,16 @@ export const InsideJokeLoreScene: React.FC = () => {
     },
   ];
 
+  const [loreMedia, setLoreMedia] = useState<'meme' | 'photo'>('photo');
+
   const handleTap = (i: number) => {
     soundManager.playClick();
     setActiveIdx(activeIdx === i ? null : i);
+  };
+
+  const handleMediaToggle = (mode: 'meme' | 'photo') => {
+    soundManager.playClick();
+    setLoreMedia(mode);
   };
 
   return (
@@ -64,18 +71,74 @@ export const InsideJokeLoreScene: React.FC = () => {
         <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.1rem)', fontWeight: 800, color: '#FDFBFF' }}>
           Inside Jokes &amp; Lore
         </h2>
-        <p style={{ color: '#D8CCE6', fontSize: '0.82rem', marginTop: '2px' }}>
+        <p style={{ color: '#D8CCE6', fontSize: '0.84rem', marginTop: '2px' }}>
           Things only two people in the world understand:
         </p>
       </div>
 
-      {/* Cat Meme Slot */}
-      <AssetPlaceholder
-        slotKey="insideJokeCatMeme"
-        height="115px"
-        width="100%"
-        style={{ maxWidth: '380px' }}
-      />
+      {/* Media Mode Switch */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '6px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          padding: '3px',
+          borderRadius: '999px',
+          border: '1px solid rgba(255, 230, 0, 0.25)',
+        }}
+      >
+        <button
+          onClick={() => handleMediaToggle('photo')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: loreMedia === 'photo' ? '#FFE600' : 'transparent',
+            color: loreMedia === 'photo' ? '#120E17' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          🩺 The Toy Kit Exhibit
+        </button>
+        <button
+          onClick={() => handleMediaToggle('meme')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: loreMedia === 'meme' ? '#FFB7C5' : 'transparent',
+            color: loreMedia === 'meme' ? '#120E17' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          😏 Smug Cat Meme
+        </button>
+      </div>
+
+      {/* Media Slot */}
+      <div style={{ width: '100%', maxWidth: '380px' }}>
+        {loreMedia === 'photo' ? (
+          <AssetPlaceholder
+            slotKey="herShopping"
+            height="170px"
+            width="100%"
+            objectFit="cover"
+          />
+        ) : (
+          <AssetPlaceholder
+            slotKey="insideJokeCatMeme"
+            height="130px"
+            width="100%"
+            objectFit="contain"
+          />
+        )}
+      </div>
 
       {/* 3 Tilted Magnetic Notes */}
       <div style={{ width: '100%', maxWidth: '380px', display: 'flex', flexDirection: 'column', gap: '8px' }}>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { AssetSlot, ASSET_REGISTRY } from '../config/assets';
-import { Camera, Cat, Image as ImageIcon, Sparkles } from 'lucide-react';
+import { usePresentation } from '../context/PresentationContext';
+import { Camera, Cat, Image as ImageIcon, Sparkles, ZoomIn } from 'lucide-react';
 
 interface AssetPlaceholderProps {
   slotKey: keyof typeof ASSET_REGISTRY | string;
@@ -11,6 +12,8 @@ interface AssetPlaceholderProps {
   style?: React.CSSProperties;
   className?: string;
   tiltAngle?: number;
+  objectFit?: 'cover' | 'contain';
+  enableLightbox?: boolean;
 }
 
 export const AssetPlaceholder: React.FC<AssetPlaceholderProps> = ({
@@ -21,7 +24,11 @@ export const AssetPlaceholder: React.FC<AssetPlaceholderProps> = ({
   style = {},
   className = '',
   tiltAngle = 0,
+  objectFit,
+  enableLightbox = true,
 }) => {
+  const { openLightbox } = usePresentation();
+
   const slot: AssetSlot =
     customSlot ||
     ASSET_REGISTRY[slotKey] || {
@@ -34,11 +41,22 @@ export const AssetPlaceholder: React.FC<AssetPlaceholderProps> = ({
       accentColor: '#FFB7C5',
     };
 
+  const isPhoto = slot.category === 'photo';
+  const effectiveFit = objectFit || (isPhoto ? 'cover' : 'contain');
+
   // If actual image source exists and is not empty, render real image
   if (slot.src) {
+    const handleImageClick = () => {
+      if (enableLightbox && slot.src) {
+        openLightbox(slot.src, slot.title, slot.description);
+      }
+    };
+
     return (
       <motion.div
         whileHover={{ scale: 1.02, rotate: tiltAngle }}
+        whileTap={{ scale: 0.98 }}
+        onClick={handleImageClick}
         style={{
           width,
           height,
@@ -47,10 +65,11 @@ export const AssetPlaceholder: React.FC<AssetPlaceholderProps> = ({
           border: `2px solid ${slot.accentColor}44`,
           boxShadow: `0 8px 24px ${slot.accentColor}25`,
           position: 'relative',
-          background: 'rgba(255, 255, 255, 0.04)',
+          background: '#0D0914',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          cursor: enableLightbox ? 'pointer' : 'default',
           ...style,
         }}
         className={className}
@@ -58,15 +77,43 @@ export const AssetPlaceholder: React.FC<AssetPlaceholderProps> = ({
         <img
           src={slot.src}
           alt={slot.title}
-          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          loading="lazy"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: effectiveFit,
+            display: 'block',
+          }}
         />
+        {enableLightbox && (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '8px',
+              right: '8px',
+              background: 'rgba(10, 7, 14, 0.65)',
+              backdropFilter: 'blur(6px)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              borderRadius: '999px',
+              padding: '3px 7px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              color: '#FDFBFF',
+              fontSize: '0.62rem',
+              fontWeight: 700,
+              pointerEvents: 'none',
+            }}
+          >
+            <ZoomIn size={10} color="#FFB7C5" />
+            <span>Tap to expand</span>
+          </div>
+        )}
       </motion.div>
     );
   }
 
   // Render stylized, intentional aesthetic placeholder
-  const isPhoto = slot.category === 'photo';
-
   return (
     <motion.div
       whileHover={{ scale: 1.02, rotate: tiltAngle ? tiltAngle * 1.2 : 0 }}

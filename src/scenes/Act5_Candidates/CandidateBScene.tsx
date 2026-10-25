@@ -4,6 +4,8 @@ import { Sparkles, Heart, Cat } from 'lucide-react';
 import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const CandidateBScene: React.FC = () => {
+  const [activePhoto, setActivePhoto] = React.useState<'herSaree' | 'herYellowOutfit'>('herSaree');
+
   return (
     <div
       style={{
@@ -52,11 +54,57 @@ export const CandidateBScene: React.FC = () => {
         </div>
       </div>
 
-      {/* Her Photo Placeholder Slot */}
+      {/* Portrait Switcher Tabs */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '6px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          padding: '3px',
+          borderRadius: '999px',
+          border: '1px solid rgba(255, 42, 133, 0.3)',
+        }}
+      >
+        <button
+          onClick={() => setActivePhoto('herSaree')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: activePhoto === 'herSaree' ? '#FF2A85' : 'transparent',
+            color: activePhoto === 'herSaree' ? '#FFFFFF' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          🌸 Traditional Grace
+        </button>
+        <button
+          onClick={() => setActivePhoto('herYellowOutfit')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: activePhoto === 'herYellowOutfit' ? '#FFE600' : 'transparent',
+            color: activePhoto === 'herYellowOutfit' ? '#120E17' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          💛 Pure Sunshine
+        </button>
+      </div>
+
+      {/* Her Photo Slot */}
       <AssetPlaceholder
-        slotKey="herPhoto"
-        height="140px"
+        slotKey={activePhoto}
+        height="210px"
         width="100%"
+        objectFit="cover"
         style={{ maxWidth: '380px' }}
       />
 

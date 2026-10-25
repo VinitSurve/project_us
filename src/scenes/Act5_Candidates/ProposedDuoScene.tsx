@@ -87,12 +87,28 @@ export const ProposedDuoScene: React.FC = () => {
           <Plus size={16} />
         </div>
 
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2rem' }}>✨</div>
-          <div className="font-marathi" style={{ fontSize: '0.92rem', color: '#FFB7C5', fontWeight: 800, marginTop: '2px' }}>
+        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div
+            style={{
+              width: '54px',
+              height: '54px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              border: '2px solid #FFE600',
+              boxShadow: '0 0 14px rgba(255, 230, 0, 0.4)',
+              cursor: 'pointer',
+            }}
+          >
+            <img
+              src="/photos/her/her_07_yellow_outfit.png"
+              alt="बाळ"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
+          <div className="font-marathi" style={{ fontSize: '0.92rem', color: '#FFB7C5', fontWeight: 800, marginTop: '4px' }}>
             बाळ
           </div>
-          <div style={{ fontSize: '0.64rem', color: '#847693' }}>Effortless Sunshine</div>
+          <div style={{ fontSize: '0.64rem', color: '#847693' }}>Effortless Sunshine ☀️</div>
         </div>
       </div>
 

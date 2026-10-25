@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Coffee, Compass, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Coffee, Compass, Sparkles, Camera, Cat } from 'lucide-react';
 import { soundManager } from '../../utils/sound';
 import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
+const RIDE_TABS = [
+  { key: 'usTogetherChai', label: '🛵 The Ride Selfie', isPhoto: true },
+  { key: 'herRoadsideCap', label: '🧢 Roadside Aesthetic', isPhoto: true },
+  { key: 'chaiRideCatMeme', label: '😹 Two Talking Cats', isPhoto: false },
+];
+
 export const ChaiRidesScene: React.FC = () => {
   const [extraMinutes, setExtraMinutes] = useState(38);
+  const [activeTab, setActiveTab] = useState('usTogetherChai');
 
   const handleAddTopic = () => {
     soundManager.playClick();
     setExtraMinutes((prev) => prev + 10);
+  };
+
+  const handleTabChange = (key: string) => {
+    soundManager.playClick();
+    setActiveTab(key);
   };
 
   return (
@@ -20,7 +32,7 @@ export const ChaiRidesScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '14px',
+        gap: '12px',
         padding: '6px 0',
       }}
     >
@@ -48,13 +60,68 @@ export const ChaiRidesScene: React.FC = () => {
         </p>
       </div>
 
-      {/* Cat Meme Slot */}
-      <AssetPlaceholder
-        slotKey="chaiRideCatMeme"
-        height="120px"
-        width="100%"
-        style={{ maxWidth: '380px' }}
-      />
+      {/* Tabs */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '4px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          padding: '3px',
+          borderRadius: '999px',
+          border: '1px solid rgba(255, 211, 182, 0.25)',
+          maxWidth: '380px',
+          width: '100%',
+          justifyContent: 'center',
+        }}
+      >
+        {RIDE_TABS.map((tab) => {
+          const isSelected = activeTab === tab.key;
+          return (
+            <button
+              key={tab.key}
+              onClick={() => handleTabChange(tab.key)}
+              style={{
+                flex: 1,
+                padding: '5px 8px',
+                borderRadius: '999px',
+                border: 'none',
+                background: isSelected ? '#FFD3B6' : 'transparent',
+                color: isSelected ? '#1E1624' : '#BDB0C9',
+                fontSize: '0.68rem',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '4px',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Media Slot */}
+      <div style={{ width: '100%', maxWidth: '380px' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.97 }}
+            transition={{ duration: 0.2 }}
+          >
+            <AssetPlaceholder
+              slotKey={activeTab}
+              height="175px"
+              width="100%"
+              objectFit={activeTab === 'chaiRideCatMeme' ? 'contain' : 'cover'}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
       {/* Route Diagnostic Widget */}
       <div

@@ -36,8 +36,15 @@ export const LittleThingsArchiveScene: React.FC = () => {
     },
   ];
 
+  const [archiveMode, setArchiveMode] = React.useState<'photo' | 'meme'>('photo');
+
   const handleTap = () => {
     soundManager.playMeow();
+  };
+
+  const handleModeToggle = (mode: 'photo' | 'meme') => {
+    soundManager.playClick();
+    setArchiveMode(mode);
   };
 
   return (
@@ -76,13 +83,69 @@ export const LittleThingsArchiveScene: React.FC = () => {
         </p>
       </div>
 
-      {/* Cat Meme Slot */}
-      <AssetPlaceholder
-        slotKey="littleThingsCatMeme"
-        height="110px"
-        width="100%"
-        style={{ maxWidth: '380px' }}
-      />
+      {/* Switcher */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '6px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          padding: '3px',
+          borderRadius: '999px',
+          border: '1px solid rgba(255, 183, 197, 0.25)',
+        }}
+      >
+        <button
+          onClick={() => handleModeToggle('photo')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: archiveMode === 'photo' ? '#FFB7C5' : 'transparent',
+            color: archiveMode === 'photo' ? '#1E1624' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          📖 Cozy Bookstore Afternoon
+        </button>
+        <button
+          onClick={() => handleModeToggle('meme')}
+          style={{
+            padding: '4px 12px',
+            borderRadius: '999px',
+            border: 'none',
+            background: archiveMode === 'meme' ? '#38E09A' : 'transparent',
+            color: archiveMode === 'meme' ? '#1E1624' : '#BDB0C9',
+            fontSize: '0.7rem',
+            fontWeight: 800,
+            cursor: 'pointer',
+            transition: 'all 0.15s ease',
+          }}
+        >
+          😸 Smiling Cat Meme
+        </button>
+      </div>
+
+      {/* Media Slot */}
+      <div style={{ width: '100%', maxWidth: '380px' }}>
+        {archiveMode === 'photo' ? (
+          <AssetPlaceholder
+            slotKey="herBookstore"
+            height="175px"
+            width="100%"
+            objectFit="cover"
+          />
+        ) : (
+          <AssetPlaceholder
+            slotKey="littleThingsCatMeme"
+            height="125px"
+            width="100%"
+            objectFit="contain"
+          />
+        )}
+      </div>
 
       {/* 2x2 Interactive Sticker Grid */}
       <div

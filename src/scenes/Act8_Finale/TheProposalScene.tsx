@@ -39,13 +39,7 @@ export const TheProposalScene: React.FC = () => {
         <Heart size={26} fill="#FFB7C5" />
       </motion.div>
 
-      {/* Cat Meme Slot */}
-      <AssetPlaceholder
-        slotKey="proposalCatMeme"
-        height="115px"
-        width="100%"
-        style={{ maxWidth: '360px' }}
-      />
+      {/* Sincere, clean breathing room */}
 
       {/* The Central Question */}
       <div style={{ maxWidth: '420px', display: 'flex', flexDirection: 'column', gap: '8px' }}>

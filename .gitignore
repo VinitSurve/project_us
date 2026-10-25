@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary asset upload folders
+project_us_personal_photos/
+project_us_cat_meme_pack/
