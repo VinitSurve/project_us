@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowRight, AlertTriangle } from 'lucide-react';
 import { soundManager } from '../../utils/sound';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 const BOOT_PUNCHES = [
   { label: '37,000 Cat Memes', status: 'LOADED', color: '#FFB7C5' },
   { label: 'Yapping Tolerance', status: 'INFINITY', color: '#00F0FF' },
-  { label: 'Emotional Compatibility', status: 'CRITICAL MATCH', color: '#38E09A' },
+  { label: 'Genuine Affection', status: 'UNCONDITIONAL', color: '#38E09A' },
   { label: 'Overthinking Units', status: 'MAX CAPACITY', color: '#FFE600' },
 ];
 
@@ -26,7 +27,7 @@ export const BootSequenceScene: React.FC = () => {
         soundManager.playBell();
         return prev;
       });
-    }, 420);
+    }, 380);
 
     return () => clearInterval(timer);
   }, []);
@@ -41,57 +42,67 @@ export const BootSequenceScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '24px',
-        padding: '10px 0',
+        gap: '14px',
+        padding: '6px 0',
       }}
     >
-      {/* Animated Glowing Cyber-Kitten Avatar */}
-      <motion.div
-        animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
-        transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+      {/* Warning Pill */}
+      <div
         style={{
-          width: '100px',
-          height: '100px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255, 183, 197, 0.25) 0%, rgba(30, 22, 36, 0.9) 70%)',
-          border: '2px solid rgba(255, 183, 197, 0.5)',
-          display: 'flex',
+          display: 'inline-flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 0 35px rgba(255, 183, 197, 0.3)',
-          fontSize: '3rem',
+          gap: '6px',
+          background: 'rgba(255, 230, 0, 0.12)',
+          border: '1px solid rgba(255, 230, 0, 0.3)',
+          color: '#FFE600',
+          fontSize: '0.68rem',
+          fontFamily: 'var(--font-mono)',
+          fontWeight: 700,
+          padding: '4px 10px',
+          borderRadius: '999px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
         }}
       >
-        🐱
-      </motion.div>
+        <AlertTriangle size={12} /> Warning: Highly Unserious Experience Ahead
+      </div>
 
       {/* Title */}
       <div>
         <h1
           style={{
-            fontSize: 'clamp(1.8rem, 6vw, 2.6rem)',
+            fontSize: 'clamp(1.8rem, 6vw, 2.5rem)',
             fontWeight: 900,
             letterSpacing: '-0.03em',
             background: 'linear-gradient(135deg, #FFF 30%, #FFB7C5 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            lineHeight: 1.1,
           }}
         >
           PROJECT: US
         </h1>
-        <p style={{ color: '#847693', fontSize: '0.8rem', fontFamily: 'var(--font-mono)', marginTop: '4px' }}>
-          INITIALIZING SECURE FELINE CONNECTION...
+        <p style={{ color: '#A89BB5', fontSize: '0.8rem', marginTop: '4px' }}>
+          Someone coded an entire website instead of a normal text message.
         </p>
       </div>
+
+      {/* Cat Meme Slot */}
+      <AssetPlaceholder
+        slotKey="introCatMeme"
+        height="130px"
+        width="100%"
+        style={{ maxWidth: '380px' }}
+      />
 
       {/* Kinetic Status Grid */}
       <div
         style={{
           width: '100%',
-          maxWidth: '340px',
+          maxWidth: '380px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '8px',
+          gap: '6px',
         }}
       >
         {BOOT_PUNCHES.map((item, idx) => {
@@ -99,18 +110,18 @@ export const BootSequenceScene: React.FC = () => {
           return (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: visible ? 1 : 0.2, y: visible ? 0 : 8 }}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: visible ? 1 : 0.2, y: visible ? 0 : 6 }}
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: '10px 14px',
-                background: visible ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.01)',
+                padding: '8px 12px',
+                background: visible ? 'rgba(255, 255, 255, 0.04)' : 'rgba(255, 255, 255, 0.01)',
                 border: visible ? `1px solid ${item.color}44` : '1px solid rgba(255,255,255,0.04)',
-                borderRadius: '10px',
+                borderRadius: '8px',
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem',
+                fontSize: '0.74rem',
                 transition: 'all 0.2s ease',
               }}
             >
@@ -128,27 +139,27 @@ export const BootSequenceScene: React.FC = () => {
         <motion.button
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
           onClick={nextScene}
           style={{
-            marginTop: '8px',
-            padding: '14px 28px',
+            marginTop: '4px',
+            padding: '12px 24px',
             borderRadius: '999px',
             background: 'linear-gradient(135deg, #FFB7C5, #E0C3FC)',
             border: 'none',
             color: '#1E1624',
             fontWeight: 800,
-            fontSize: '0.92rem',
+            fontSize: '0.88rem',
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
             cursor: 'pointer',
-            boxShadow: '0 8px 24px rgba(255, 183, 197, 0.4)',
+            boxShadow: '0 6px 20px rgba(255, 183, 197, 0.4)',
           }}
         >
-          <span>Open Proposal</span>
-          <ArrowRight size={18} />
+          <span>Enter The Lore</span>
+          <ArrowRight size={16} />
         </motion.button>
       )}
     </div>

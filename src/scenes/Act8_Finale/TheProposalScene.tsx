@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
 import { Heart, ArrowRight } from 'lucide-react';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const TheProposalScene: React.FC = () => {
   const { nextScene } = usePresentation();
@@ -14,17 +15,17 @@ export const TheProposalScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '24px',
-        padding: '10px 0',
+        gap: '12px',
+        padding: '6px 0',
       }}
     >
       {/* Pulsing Glowing Heart */}
       <motion.div
-        animate={{ scale: [1, 1.12, 1] }}
-        transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ repeat: Infinity, duration: 2.2, ease: 'easeInOut' }}
         style={{
-          width: '76px',
-          height: '76px',
+          width: '56px',
+          height: '56px',
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(255, 183, 197, 0.35) 0%, rgba(224, 195, 252, 0.1) 70%)',
           border: '2px solid rgba(255, 183, 197, 0.5)',
@@ -32,65 +33,62 @@ export const TheProposalScene: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           color: '#FFB7C5',
-          boxShadow: '0 0 40px rgba(255, 183, 197, 0.3)',
+          boxShadow: '0 0 30px rgba(255, 183, 197, 0.3)',
         }}
       >
-        <Heart size={36} fill="#FFB7C5" />
+        <Heart size={26} fill="#FFB7C5" />
       </motion.div>
 
+      {/* Cat Meme Slot */}
+      <AssetPlaceholder
+        slotKey="proposalCatMeme"
+        height="115px"
+        width="100%"
+        style={{ maxWidth: '360px' }}
+      />
+
       {/* The Central Question */}
-      <div style={{ maxWidth: '440px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div style={{ maxWidth: '420px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <h1
           style={{
-            fontSize: 'clamp(1.5rem, 5.5vw, 2.2rem)',
+            fontSize: 'clamp(1.3rem, 4.8vw, 1.85rem)',
             fontWeight: 800,
             lineHeight: 1.35,
             letterSpacing: '-0.02em',
             color: '#FDFBFF',
           }}
         >
-          Jokes aside, I genuinely like you.
+          Would you be open to going on a proper date with me? ☕✨
         </h1>
 
-        <p
-          style={{
-            fontSize: 'clamp(1.1rem, 4vw, 1.35rem)',
-            color: '#FFB7C5',
-            fontWeight: 700,
-            lineHeight: 1.45,
-          }}
-        >
-          Would you be open to going on a proper date with me and seeing where it goes?
+        <p style={{ fontSize: '0.84rem', color: '#BDB0C9', lineHeight: 1.5 }}>
+          Chai, good food, and seeing where things go naturally. Zero rush, zero pressure.
         </p>
       </div>
 
-      <p style={{ fontSize: '0.84rem', color: '#847693', maxWidth: '340px', lineHeight: 1.5 }}>
-        No pressure at all. Take all the time you need.
-      </p>
-
       {/* Button to response ballot */}
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
         onClick={nextScene}
         style={{
-          marginTop: '6px',
-          padding: '16px 36px',
+          marginTop: '4px',
+          padding: '12px 28px',
           borderRadius: '999px',
           background: 'linear-gradient(135deg, #FFB7C5, #E0C3FC)',
           border: 'none',
           color: '#1E1624',
           fontWeight: 800,
-          fontSize: '0.96rem',
+          fontSize: '0.88rem',
           display: 'inline-flex',
           alignItems: 'center',
           gap: '8px',
           cursor: 'pointer',
-          boxShadow: '0 8px 30px rgba(255, 183, 197, 0.4)',
+          boxShadow: '0 6px 20px rgba(255, 183, 197, 0.4)',
         }}
       >
-        <span>Your Response</span>
-        <ArrowRight size={18} />
+        <span>Your Honest Answer</span>
+        <ArrowRight size={16} />
       </motion.button>
     </div>
   );

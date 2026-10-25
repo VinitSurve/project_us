@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
 import { soundManager } from '../../utils/sound';
-import { ShieldCheck, Sparkles } from 'lucide-react';
+import { Sparkles, Heart } from 'lucide-react';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const ProposalCoverScene: React.FC = () => {
-  const { nextScene } = usePresentation();
   const [stamped, setStamped] = useState(false);
 
   const handleStamp = () => {
@@ -21,12 +21,12 @@ export const ProposalCoverScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '24px',
-        padding: '10px 0',
+        gap: '14px',
+        padding: '6px 0',
         position: 'relative',
       }}
     >
-      {/* Confidential Dossier Container */}
+      {/* Dossier Container */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -36,13 +36,17 @@ export const ProposalCoverScene: React.FC = () => {
           background: 'linear-gradient(145deg, #1D1526, #140E1B)',
           border: '1px solid rgba(224, 195, 252, 0.25)',
           borderRadius: '24px',
-          padding: '36px 24px',
+          padding: '24px 20px',
           boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(224, 195, 252, 0.08)',
           position: 'relative',
           overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '12px',
         }}
       >
-        {/* Subtle Top Metadata Tag */}
+        {/* Top Tag */}
         <div
           style={{
             display: 'inline-flex',
@@ -55,75 +59,84 @@ export const ProposalCoverScene: React.FC = () => {
             fontSize: '0.72rem',
             fontFamily: 'var(--font-mono)',
             color: '#FFB7C5',
-            marginBottom: '16px',
           }}
         >
-          <ShieldCheck size={12} /> CONFIDENTIAL PARTNERSHIP TENDER
+          <Sparkles size={12} /> A CAT-MEME STORY // FOR बाळ
         </div>
 
-        {/* Big Bold Editorial Title */}
-        <h1
-          style={{
-            fontSize: 'clamp(2.6rem, 9vw, 3.8rem)',
-            fontWeight: 900,
-            letterSpacing: '-0.04em',
-            lineHeight: 1,
-            background: 'linear-gradient(135deg, #FFFFFF 20%, #FFB7C5 70%, #E0C3FC 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            marginBottom: '12px',
-          }}
-        >
-          PROJECT: US
-        </h1>
+        {/* Big Bold Title */}
+        <div>
+          <h1
+            style={{
+              fontSize: 'clamp(2.4rem, 8vw, 3.4rem)',
+              fontWeight: 900,
+              letterSpacing: '-0.04em',
+              lineHeight: 1,
+              background: 'linear-gradient(135deg, #FFFFFF 20%, #FFB7C5 70%, #E0C3FC 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginBottom: '6px',
+            }}
+          >
+            PROJECT: US
+          </h1>
+          <h2
+            style={{
+              fontSize: 'clamp(0.92rem, 3.6vw, 1.15rem)',
+              fontWeight: 600,
+              color: '#FDFBFF',
+              lineHeight: 1.35,
+            }}
+          >
+            A slightly chaotic cat-meme presentation about two people.
+          </h2>
+        </div>
 
-        <h2
-          style={{
-            fontSize: 'clamp(1rem, 3.8vw, 1.25rem)',
-            fontWeight: 600,
-            color: '#FDFBFF',
-            lineHeight: 1.4,
-            marginBottom: '20px',
-          }}
-        >
-          A Rather Unnecessary but Extremely Important Business Proposal
-        </h2>
+        {/* Cat Meme Slot */}
+        <AssetPlaceholder
+          slotKey="coverCatMeme"
+          height="125px"
+          width="100%"
+          style={{ maxWidth: '320px' }}
+        />
 
-        {/* Tactile Rubber Stamp (Tappable!) */}
+        {/* Tactile Rubber Stamp */}
         <motion.div
-          whileHover={{ scale: 1.08 }}
+          whileHover={{ scale: 1.06 }}
           whileTap={{ scale: 0.92 }}
           onClick={handleStamp}
           style={{
-            margin: '12px auto',
-            border: '3px dashed #FF4757',
+            border: '2px dashed #FF4757',
             color: '#FF4757',
-            padding: '8px 20px',
-            borderRadius: '10px',
+            padding: '6px 16px',
+            borderRadius: '8px',
             fontWeight: 900,
-            fontSize: '0.86rem',
-            letterSpacing: '0.14em',
+            fontSize: '0.78rem',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            display: 'inline-block',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
             cursor: 'pointer',
-            boxShadow: '0 0 20px rgba(255, 71, 87, 0.25)',
-            transform: 'rotate(-4deg)',
+            boxShadow: '0 0 16px rgba(255, 71, 87, 0.2)',
+            transform: 'rotate(-3deg)',
+            userSelect: 'none',
           }}
         >
-          {stamped ? '🐾 CLEARED FOR बाळ' : 'TOP SECRET // TAP TO UNSEAL'}
+          <Heart size={13} fill="#FF4757" />
+          <span>{stamped ? 'CLEARED FOR बाळ 🐾' : 'TAP TO UNSEAL'}</span>
         </motion.div>
 
-        {/* Sincere, single quote */}
+        {/* Sincere note */}
         <p
           style={{
-            marginTop: '22px',
-            fontSize: '0.88rem',
+            fontSize: '0.82rem',
             color: '#BDB0C9',
-            lineHeight: 1.55,
+            lineHeight: 1.5,
             fontStyle: 'italic',
           }}
         >
-          &ldquo;Prepared with questionable statistics, an unreasonable number of cats, and surprisingly genuine intentions.&rdquo;
+          &ldquo;Written in TypeScript, powered by late-night chai, and made with 100% genuine intentions.&rdquo;
         </p>
       </motion.div>
     </div>

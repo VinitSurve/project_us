@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff3f5"/><stop offset="100%" stop-color="#f2eaff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" rx="60" fill="url(#bg)"/>
+  <circle cx="540" cy="395" r="220" fill="#ffffff" opacity=".8"/>
+  <!-- Original simple cat illustration -->
+  <path d="M365 350 L330 190 L470 280 Q540 250 610 280 L750 190 L715 350 Q800 430 770 560 Q735 720 540 720 Q345 720 310 560 Q280 430 365 350Z" fill="#34313b"/>
+  <path d="M380 355 L355 245 L455 310 Q540 280 625 310 L725 245 L700 355 Q770 430 735 555 Q700 675 540 675 Q380 675 345 555 Q310 430 380 355Z" fill="#f8f5f2"/>
+  <ellipse cx="455" cy="455" rx="36" ry="48" fill="#34313b"/>
+  <ellipse cx="625" cy="455" rx="36" ry="48" fill="#34313b"/>
+  <circle cx="465" cy="440" r="11" fill="#fff"/>
+  <circle cx="635" cy="440" r="11" fill="#fff"/>
+  <path d="M520 520 Q540 540 560 520 Q540 560 520 520Z" fill="#e88a9b"/>
+  <path d="M540 558 Q510 590 480 565 M540 558 Q570 590 600 565" fill="none" stroke="#34313b" stroke-width="10" stroke-linecap="round"/>
+  <path d="M390 530 L270 510 M390 565 L260 580 M690 530 L810 510 M690 565 L820 580" stroke="#34313b" stroke-width="8" stroke-linecap="round"/>
+  <text x="540" y="115" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="5" fill="#8b6478">OUR LORE</text>
+  <text x="540" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="45" font-weight="700" fill="#302936">When the lore gets so specific</text>
+  <text x="540" y="890" text-anchor="middle" font-family="Arial, sans-serif" font-size="45" font-weight="700" fill="#302936">only two people understand.</text>
+  <text x="540" y="980" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#8b6478">PROJECT: US · ORIGINAL STARTER MEME CARD</text>
+</svg>

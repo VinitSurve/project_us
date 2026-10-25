@@ -64,10 +64,10 @@ export const PresentationProvider: React.FC<{ children: ReactNode }> = ({ childr
 
       // Adaptive cat moods based on scene acts
       if (index === 0) setCatMood('sleepy');
-      else if (index === 15) setCatMood('shocked'); // Guna score scene
-      else if (index === 20) setCatMood('happy'); // बाळ profile
-      else if (index === 26) setCatMood('purring'); // brainrot hub
-      else if (index >= 27) setCatMood('happy'); // sincere finale
+      else if (index === 5) setCatMood('shocked'); // 34/36 Guna score scene
+      else if (index === 9) setCatMood('happy'); // बाळ tribute
+      else if (index === 11) setCatMood('purring'); // petting lab
+      else if (index >= 13) setCatMood('happy'); // soft side & question
       else setCatMood('curious');
     }
   };

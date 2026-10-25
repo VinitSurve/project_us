@@ -72,7 +72,7 @@ export const CatCompanion: React.FC = () => {
             title="Click to dismiss chat bubble"
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '2px', color: '#B388FF', fontWeight: 700, fontSize: '0.72rem' }}>
-              <Sparkles size={11} /> Billi-Bot Consultant
+              <Sparkles size={11} /> Billi-Bot Companion 🐾
             </div>
             {currentScene.catComment}
           </motion.div>

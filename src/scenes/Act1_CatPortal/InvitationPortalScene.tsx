@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { usePresentation } from '../../context/PresentationContext';
 import { soundManager } from '../../utils/sound';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const InvitationPortalScene: React.FC = () => {
   const { nextScene, unlockEasterEgg } = usePresentation();
@@ -34,8 +34,8 @@ export const InvitationPortalScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '24px',
-        padding: '10px 0',
+        gap: '14px',
+        padding: '6px 0',
       }}
     >
       {/* Big Playful Heading */}
@@ -44,7 +44,7 @@ export const InvitationPortalScene: React.FC = () => {
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           style={{
-            fontSize: 'clamp(2.4rem, 7vw, 3.6rem)',
+            fontSize: 'clamp(2.2rem, 6.5vw, 3.2rem)',
             fontWeight: 900,
             lineHeight: 1.1,
             letterSpacing: '-0.04em',
@@ -55,21 +55,29 @@ export const InvitationPortalScene: React.FC = () => {
         >
           pspspspsps...
         </motion.h1>
-        <p style={{ color: '#E0C3FC', fontSize: '1.1rem', marginTop: '6px', fontWeight: 600 }}>
-          You have been formally summoned.
+        <p style={{ color: '#E0C3FC', fontSize: '0.95rem', marginTop: '2px', fontWeight: 600 }}>
+          You have been formally summoned by a cat.
         </p>
       </div>
 
+      {/* Cat Meme Slot */}
+      <AssetPlaceholder
+        slotKey="summonsCatMeme"
+        height="120px"
+        width="100%"
+        style={{ maxWidth: '340px' }}
+      />
+
       {/* Giant Interactive Cat Paw Button */}
       <motion.div
-        whileHover={{ scale: 1.06 }}
+        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.92 }}
         onClick={handleSummonTap}
         style={{
-          width: '180px',
-          height: '180px',
+          width: '140px',
+          height: '140px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(255, 183, 197, 0.3) 0%, rgba(35, 27, 47, 0.85) 70%)',
+          background: 'radial-gradient(circle, rgba(255, 183, 197, 0.25) 0%, rgba(35, 27, 47, 0.85) 70%)',
           border: '2px dashed rgba(255, 183, 197, 0.6)',
           display: 'flex',
           flexDirection: 'column',
@@ -77,8 +85,9 @@ export const InvitationPortalScene: React.FC = () => {
           justifyContent: 'center',
           cursor: 'pointer',
           position: 'relative',
-          boxShadow: '0 0 45px rgba(255, 183, 197, 0.35)',
+          boxShadow: '0 0 35px rgba(255, 183, 197, 0.3)',
           overflow: 'hidden',
+          userSelect: 'none',
         }}
       >
         {/* Floating Paw Prints inside */}
@@ -101,7 +110,7 @@ export const InvitationPortalScene: React.FC = () => {
         ))}
 
         {/* Big Neon Cat Paw SVG */}
-        <svg width="86" height="86" viewBox="0 0 100 100" fill="none">
+        <svg width="68" height="68" viewBox="0 0 100 100" fill="none">
           <ellipse cx="50" cy="62" rx="24" ry="18" fill="#FFB7C5" />
           <ellipse cx="28" cy="38" rx="8" ry="12" fill="#E0C3FC" transform="rotate(-15 28 38)" />
           <ellipse cx="44" cy="30" rx="8" ry="12" fill="#E0C3FC" transform="rotate(-5 44 30)" />
@@ -111,22 +120,17 @@ export const InvitationPortalScene: React.FC = () => {
 
         <span
           style={{
-            marginTop: '8px',
-            fontSize: '0.72rem',
+            marginTop: '4px',
+            fontSize: '0.66rem',
             color: '#FFB7C5',
             fontWeight: 800,
             textTransform: 'uppercase',
             letterSpacing: '0.08em',
           }}
         >
-          {taps === 0 ? 'Tap the Paw' : taps >= 3 ? 'Access Granted! 🐾' : `Tap ${3 - taps} more times`}
+          {taps === 0 ? 'Tap 3 times' : taps >= 3 ? 'Summoned! 🐾' : `Tap ${3 - taps} more`}
         </span>
       </motion.div>
-
-      {/* Manual skip if user prefers single tap */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#847693', fontSize: '0.78rem' }}>
-        <span>Or tap the next arrow below</span>
-      </div>
     </div>
   );
 };

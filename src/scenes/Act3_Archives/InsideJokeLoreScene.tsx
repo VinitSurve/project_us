@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { usePresentation } from '../../context/PresentationContext';
+import { Sparkles } from 'lucide-react';
 import { soundManager } from '../../utils/sound';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const InsideJokeLoreScene: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
 
   const JOKES = [
     {
-      title: 'Infinite Yap Quota',
-      punchline: 'Two hours pass in five minutes when we talk.',
+      title: 'The Infinite Yap Quota',
+      punchline: 'Two hours pass in five minutes whenever we start talking.',
       color: '#FFF9C4',
-      rotate: -3,
+      rotate: -2,
     },
     {
-      title: 'Scooter Transit Paradox',
-      punchline: 'Shortest route: 10 mins. Our route: 45 mins + 1 more topic.',
+      title: 'The Cat Clip Precedent',
+      punchline: 'The crochet cat clips that permanently set the bar for iconic fashion.',
       color: '#FFCDD2',
       rotate: 2,
     },
     {
-      title: 'Chai as a Dependency',
-      punchline: 'package.json: "cutting-chai": "^latest" (Required).',
+      title: 'Billi-Bot Deploy',
+      punchline: 'Coding a desktop companion cat because normal messages weren’t enough.',
       color: '#C8E6C9',
-      rotate: -2,
+      rotate: -1,
     },
   ];
 
@@ -40,55 +41,64 @@ export const InsideJokeLoreScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '24px',
-        padding: '10px 0',
+        gap: '12px',
+        padding: '6px 0',
       }}
     >
       <div>
-        <h2 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          Inside-Joke Pinboard
+        <div
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.72rem',
+            color: '#FFE600',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            marginBottom: '4px',
+          }}
+        >
+          <Sparkles size={12} /> CLASSIFIED SHARED FREQUENCY
+        </div>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.1rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          Inside Jokes &amp; Lore
         </h2>
-        <p style={{ color: '#FFE600', fontSize: '0.86rem', marginTop: '4px' }}>
-          References only two people understand:
+        <p style={{ color: '#D8CCE6', fontSize: '0.82rem', marginTop: '2px' }}>
+          Things only two people in the world understand:
         </p>
       </div>
 
+      {/* Cat Meme Slot */}
+      <AssetPlaceholder
+        slotKey="insideJokeCatMeme"
+        height="115px"
+        width="100%"
+        style={{ maxWidth: '380px' }}
+      />
+
       {/* 3 Tilted Magnetic Notes */}
-      <div style={{ width: '100%', maxWidth: '360px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+      <div style={{ width: '100%', maxWidth: '380px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
         {JOKES.map((j, i) => (
           <motion.div
             key={i}
-            whileHover={{ scale: 1.03, rotate: 0 }}
-            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.02, rotate: 0 }}
+            whileTap={{ scale: 0.98 }}
             onClick={() => handleTap(i)}
             style={{
-              padding: '16px 20px',
+              padding: '10px 14px',
               background: j.color,
               color: '#231C18',
-              borderRadius: '14px',
+              borderRadius: '12px',
               transform: `rotate(${j.rotate}deg)`,
-              boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+              boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
               cursor: 'pointer',
               textAlign: 'left',
               position: 'relative',
             }}
           >
-            {/* Red Pushpin */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '-6px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '12px',
-                height: '12px',
-                borderRadius: '50%',
-                background: '#FF4757',
-                border: '2px solid #FFF',
-              }}
-            />
-            <div style={{ fontSize: '0.92rem', fontWeight: 800 }}>{j.title}</div>
-            <div style={{ fontSize: '0.82rem', marginTop: '4px', color: '#4A3B32', lineHeight: 1.4 }}>
+            <div style={{ fontSize: '0.86rem', fontWeight: 800 }}>{j.title}</div>
+            <div style={{ fontSize: '0.78rem', marginTop: '2px', color: '#4A3B32', lineHeight: 1.35 }}>
               {j.punchline}
             </div>
           </motion.div>

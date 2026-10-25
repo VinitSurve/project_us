@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { usePresentation } from '../../context/PresentationContext';
-import { Terminal, Laptop, Sparkles } from 'lucide-react';
+import { Terminal, Sparkles } from 'lucide-react';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const HacknovaOriginScene: React.FC = () => {
   return (
@@ -12,74 +12,93 @@ export const HacknovaOriginScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '24px',
-        padding: '10px 0',
+        gap: '14px',
+        padding: '6px 0',
       }}
     >
       <div>
-        <h2 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          The Hacknova Genesis
+        <div
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.72rem',
+            color: '#00F0FF',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            marginBottom: '4px',
+          }}
+        >
+          <Sparkles size={12} /> THE ORIGIN // 2:00 AM
+        </div>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.1rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          The Hacknova Spark
         </h2>
-        <p style={{ color: '#FFD3B6', fontSize: '0.86rem', marginTop: '4px', fontWeight: 600 }}>
-          Where it all began.
+        <p style={{ color: '#D8CCE6', fontSize: '0.84rem', marginTop: '2px' }}>
+          Cold pizza, endless debugging, and an unexpected spark.
         </p>
       </div>
 
+      {/* Cat Meme Slot */}
+      <AssetPlaceholder
+        slotKey="hacknovaCatMeme"
+        height="120px"
+        width="100%"
+        style={{ maxWidth: '380px' }}
+      />
+
       {/* Terminal Code Snippet */}
       <motion.div
-        initial={{ y: 15, opacity: 0 }}
+        initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         style={{
           width: '100%',
           maxWidth: '380px',
           background: '#150F1D',
-          border: '1px solid rgba(255, 211, 182, 0.25)',
-          borderRadius: '16px',
-          padding: '16px 18px',
+          border: '1px solid rgba(0, 240, 255, 0.25)',
+          borderRadius: '14px',
+          padding: '14px 16px',
           fontFamily: 'var(--font-mono)',
-          fontSize: '0.82rem',
+          fontSize: '0.78rem',
           textAlign: 'left',
-          boxShadow: '0 12px 30px rgba(0,0,0,0.5)',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
         }}
       >
-        <div style={{ display: 'flex', gap: '6px', marginBottom: '12px' }}>
+        <div style={{ display: 'flex', gap: '6px', marginBottom: '8px' }}>
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FF5F56' }} />
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#FFBD2E' }} />
           <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#27C93F' }} />
         </div>
-        <div style={{ color: '#847693', marginBottom: '6px' }}>// Hacknova Hackathon • 2:00 AM</div>
-        <div style={{ color: '#FFD3B6' }}>$ git log --chemistry</div>
-        <div style={{ color: '#38E09A', marginTop: '6px' }}>&gt; Fluorescent lights. Cold caffeine.</div>
-        <div style={{ color: '#E0C3FC' }}>&gt; And then, we started talking.</div>
+        <div style={{ color: '#847693', marginBottom: '4px' }}>// Hacknova 2024 • Late Night Log</div>
+        <div style={{ color: '#00F0FF' }}>$ git log --chemistry</div>
+        <div style={{ color: '#38E09A', marginTop: '4px' }}>&gt; Fluorescent lights. Two code enthusiasts.</div>
+        <div style={{ color: '#E0C3FC' }}>&gt; And suddenly, 3 hours passed in 5 minutes.</div>
       </motion.div>
 
-      {/* Tilted Polaroid Note */}
-      <motion.div
-        whileHover={{ rotate: 0 }}
+      {/* Handwritten note */}
+      <div
         style={{
           width: '100%',
-          maxWidth: '360px',
-          background: '#FFFDF9',
-          borderRadius: '14px',
-          padding: '16px 20px',
-          boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
-          transform: 'rotate(-2deg)',
+          maxWidth: '380px',
+          background: 'rgba(255, 255, 255, 0.04)',
+          border: '1px dashed rgba(224, 195, 252, 0.3)',
+          borderRadius: '12px',
+          padding: '12px 16px',
           textAlign: 'left',
-          border: '1px solid #E8E0D2',
         }}
       >
         <p
           className="font-handwriting"
           style={{
-            fontSize: '1.25rem',
-            color: '#2D1F36',
+            fontSize: '1.15rem',
+            color: '#FFB7C5',
             lineHeight: 1.4,
-            fontWeight: 700,
           }}
         >
           &ldquo;You were effortlessly funny, sharp, and authentic. I remember hoping the conversation wouldn&apos;t end when the hackathon did.&rdquo;
         </p>
-      </motion.div>
+      </div>
     </div>
   );
 };

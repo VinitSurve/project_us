@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { usePresentation } from '../../context/PresentationContext';
-import { Plus } from 'lucide-react';
+import { Sparkles, Plus } from 'lucide-react';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const ProposedDuoScene: React.FC = () => {
   return (
@@ -12,18 +12,41 @@ export const ProposedDuoScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '24px',
-        padding: '10px 0',
+        gap: '12px',
+        padding: '6px 0',
       }}
     >
       <div>
-        <h2 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          The Proposed Duo
+        <div
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.72rem',
+            color: '#E0C3FC',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            marginBottom: '4px',
+          }}
+        >
+          <Sparkles size={12} /> THE DYNAMIC
+        </div>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.1rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          Overthinker Meets Sunshine
         </h2>
-        <p style={{ color: '#FFB7C5', fontSize: '0.86rem', marginTop: '4px', fontWeight: 600 }}>
-          Synergy equation:
+        <p style={{ color: '#D8CCE6', fontSize: '0.82rem', marginTop: '2px' }}>
+          Why this duo just makes effortless sense:
         </p>
       </div>
+
+      {/* Cat Meme Slot */}
+      <AssetPlaceholder
+        slotKey="duoCatMeme"
+        height="120px"
+        width="100%"
+        style={{ maxWidth: '380px' }}
+      />
 
       {/* Visual Synergy Equation */}
       <div
@@ -33,25 +56,26 @@ export const ProposedDuoScene: React.FC = () => {
           justifyContent: 'center',
           gap: '16px',
           width: '100%',
-          maxWidth: '360px',
-          padding: '24px 16px',
+          maxWidth: '380px',
+          padding: '16px',
           background: 'rgba(255, 255, 255, 0.03)',
           border: '1px solid rgba(224, 195, 252, 0.25)',
-          borderRadius: '24px',
-          boxShadow: '0 12px 35px rgba(0,0,0,0.4)',
+          borderRadius: '18px',
+          boxShadow: '0 8px 25px rgba(0,0,0,0.4)',
         }}
       >
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2.5rem' }}>👨‍💻</div>
-          <div style={{ fontSize: '0.8rem', color: '#BDB0C9', fontWeight: 700, marginTop: '4px' }}>
+          <div style={{ fontSize: '2rem' }}>👨‍💻</div>
+          <div style={{ fontSize: '0.76rem', color: '#BDB0C9', fontWeight: 700, marginTop: '2px' }}>
             Candidate A
           </div>
+          <div style={{ fontSize: '0.64rem', color: '#847693' }}>Terminal Overthinker</div>
         </div>
 
         <div
           style={{
-            width: '36px',
-            height: '36px',
+            width: '30px',
+            height: '30px',
             borderRadius: '50%',
             background: 'rgba(255, 183, 197, 0.2)',
             display: 'flex',
@@ -60,19 +84,20 @@ export const ProposedDuoScene: React.FC = () => {
             color: '#FFB7C5',
           }}
         >
-          <Plus size={20} />
+          <Plus size={16} />
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2.5rem' }}>✨</div>
-          <div className="font-marathi" style={{ fontSize: '0.95rem', color: '#FFB7C5', fontWeight: 800, marginTop: '4px' }}>
+          <div style={{ fontSize: '2rem' }}>✨</div>
+          <div className="font-marathi" style={{ fontSize: '0.92rem', color: '#FFB7C5', fontWeight: 800, marginTop: '2px' }}>
             बाळ
           </div>
+          <div style={{ fontSize: '0.64rem', color: '#847693' }}>Effortless Sunshine</div>
         </div>
       </div>
 
-      <p style={{ maxWidth: '340px', fontSize: '0.94rem', color: '#D8CCE6', lineHeight: 1.55 }}>
-        &ldquo;Not two halves trying to complete each other. Just two whole, independent people having way more fun together.&rdquo;
+      <p style={{ maxWidth: '360px', fontSize: '0.84rem', color: '#D8CCE6', lineHeight: 1.5 }}>
+        &ldquo;Not two halves trying to complete each other. Just two whole, independent people who make each other&apos;s days way brighter.&rdquo;
       </p>
     </div>
   );

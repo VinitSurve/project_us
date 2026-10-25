@@ -1,0 +1,42 @@
+{
+  "dataset_reference": "https://huggingface.co/datasets/pielet/cat-memes",
+  "contents": [
+    {
+      "folder": "01_intro_chaos",
+      "mood": "wide-eyed",
+      "caption": "I came here to be normal. / The cat had other plans.",
+      "asset": "01_intro_chaos/starter_cat_meme.svg"
+    },
+    {
+      "folder": "02_our_lore",
+      "mood": "knowing",
+      "caption": "When the lore gets so specific / only two people understand.",
+      "asset": "02_our_lore/starter_cat_meme.svg"
+    },
+    {
+      "folder": "03_funny_reactions",
+      "mood": "side-eye",
+      "caption": "Me pretending I did not / replay that moment 47 times.",
+      "asset": "03_funny_reactions/starter_cat_meme.svg"
+    },
+    {
+      "folder": "04_cute_wholesome",
+      "mood": "soft",
+      "caption": "No thoughts. / Just happy to see you.",
+      "asset": "04_cute_wholesome/starter_cat_meme.svg"
+    },
+    {
+      "folder": "05_soft_romance",
+      "mood": "heart",
+      "caption": "The jokes are loud. / The feeling is real.",
+      "asset": "05_soft_romance/starter_cat_meme.svg"
+    },
+    {
+      "folder": "06_heartfelt_finale",
+      "mood": "gentle",
+      "caption": "One honest question. / No pressure. Just you.",
+      "asset": "06_heartfelt_finale/starter_cat_meme.svg"
+    }
+  ],
+  "note": "Original SVG starter cards only; no Hugging Face images are bundled in this ZIP."
+}

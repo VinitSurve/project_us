@@ -63,7 +63,7 @@ export const SceneDrawer: React.FC = () => {
                   <Sparkles size={18} color="#FFB7C5" /> Table of Contents
                 </h3>
                 <p style={{ fontSize: '0.78rem', color: '#847693', marginTop: '2px' }}>
-                  Confidential Presentation Manifest • 8 Acts • 32 Scenes
+                  A Cat-Meme Story • {ACTS.length} Parts • {SCENES.length} Scenes
                 </p>
               </div>
               <button

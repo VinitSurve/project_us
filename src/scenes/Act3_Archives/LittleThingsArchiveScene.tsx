@@ -1,35 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { usePresentation } from '../../context/PresentationContext';
+import { Sparkles } from 'lucide-react';
 import { soundManager } from '../../utils/sound';
+import { AssetPlaceholder } from '../../components/AssetPlaceholder';
 
 export const LittleThingsArchiveScene: React.FC = () => {
   const STICKERS = [
     {
       emoji: '🧶',
       title: 'Crochet Cat Ears',
-      desc: 'Iconic signature. 10/10 aesthetic.',
+      desc: 'Iconic signature. 10/10 aesthetic confidence.',
       bg: 'rgba(255, 183, 197, 0.15)',
       border: '#FFB7C5',
     },
     {
       emoji: '💻',
-      title: 'Billi-Bot Deploy',
-      desc: 'Coding a desktop companion just to make you smile.',
+      title: 'Billi-Bot Desktop Cat',
+      desc: 'Coding an animated companion for your screen.',
       bg: 'rgba(224, 195, 252, 0.15)',
       border: '#E0C3FC',
     },
     {
-      emoji: '🛵',
-      title: 'The Long Chai Route',
-      desc: 'Taking the 45-minute route home for one extra topic.',
+      emoji: '☕',
+      title: 'Favourite Chai Orders',
+      desc: 'Hot cutting tea and zero hurry to finish.',
       bg: 'rgba(255, 211, 182, 0.15)',
       border: '#FFD3B6',
     },
     {
       emoji: '🐱',
       title: 'Street Cat Spotting',
-      desc: 'Stopping mid-sentence to greet every kitten.',
+      desc: 'Pausing any story to say hi to a stray kitten.',
       bg: 'rgba(56, 224, 154, 0.15)',
       border: '#38E09A',
     },
@@ -47,25 +48,48 @@ export const LittleThingsArchiveScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        gap: '20px',
-        padding: '10px 0',
+        gap: '12px',
+        padding: '6px 0',
       }}
     >
       <div>
-        <h2 style={{ fontSize: 'clamp(1.6rem, 5vw, 2.2rem)', fontWeight: 800, color: '#FDFBFF' }}>
-          The Little Things
+        <div
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.72rem',
+            color: '#FFB7C5',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            marginBottom: '4px',
+          }}
+        >
+          <Sparkles size={12} /> THE AUTHENTIC DETAILS
+        </div>
+        <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.1rem)', fontWeight: 800, color: '#FDFBFF' }}>
+          The Little Things I Remember
         </h2>
-        <p style={{ color: '#FFB7C5', fontSize: '0.86rem', marginTop: '4px' }}>
-          Specific, authentic, unforgettable details:
+        <p style={{ color: '#D8CCE6', fontSize: '0.82rem', marginTop: '2px' }}>
+          It’s always the tiny, specific moments that stay:
         </p>
       </div>
+
+      {/* Cat Meme Slot */}
+      <AssetPlaceholder
+        slotKey="littleThingsCatMeme"
+        height="110px"
+        width="100%"
+        style={{ maxWidth: '380px' }}
+      />
 
       {/* 2x2 Interactive Sticker Grid */}
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '12px',
+          gap: '8px',
           width: '100%',
           maxWidth: '380px',
         }}
@@ -73,31 +97,28 @@ export const LittleThingsArchiveScene: React.FC = () => {
         {STICKERS.map((s, i) => (
           <motion.div
             key={i}
-            whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 3 : -3 }}
-            whileTap={{ scale: 0.92, rotate: i % 2 === 0 ? -5 : 5 }}
+            whileHover={{ scale: 1.04, rotate: i % 2 === 0 ? 2 : -2 }}
+            whileTap={{ scale: 0.94 }}
             onClick={handleTap}
             style={{
-              padding: '16px 12px',
+              padding: '10px 8px',
               background: s.bg,
-              border: `2px dashed ${s.border}`,
-              borderRadius: '20px',
+              border: `1.5px dashed ${s.border}`,
+              borderRadius: '14px',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               cursor: 'pointer',
-              gap: '6px',
-              boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+              gap: '4px',
+              boxShadow: '0 6px 18px rgba(0,0,0,0.2)',
+              userSelect: 'none',
             }}
           >
-            <span style={{ fontSize: '2.4rem' }}>{s.emoji}</span>
-            <div style={{ color: '#FDFBFF', fontSize: '0.86rem', fontWeight: 800 }}>{s.title}</div>
-            <div style={{ color: '#BDB0C9', fontSize: '0.72rem', lineHeight: 1.35 }}>{s.desc}</div>
+            <span style={{ fontSize: '1.8rem' }}>{s.emoji}</span>
+            <div style={{ color: '#FDFBFF', fontSize: '0.8rem', fontWeight: 800 }}>{s.title}</div>
+            <div style={{ color: '#BDB0C9', fontSize: '0.68rem', lineHeight: 1.3 }}>{s.desc}</div>
           </motion.div>
         ))}
-      </div>
-
-      <div style={{ fontSize: '0.74rem', color: '#847693' }}>
-        🐾 Tap any sticker to hear Billi-Bot!
       </div>
     </div>
   );

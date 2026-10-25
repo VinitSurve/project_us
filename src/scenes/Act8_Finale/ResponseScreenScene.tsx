@@ -76,7 +76,7 @@ export const ResponseScreenScene: React.FC = () => {
             marginBottom: '4px',
           }}
         >
-          BOARDROOM BALLOT // PRIVATE &amp; HONEST
+          HONEST SPACE // ZERO PRESSURE
         </div>
         <h2 style={{ fontSize: 'clamp(1.3rem, 4.5vw, 1.85rem)', fontWeight: 800, color: '#FDFBFF' }}>
           Your Decision
